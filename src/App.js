@@ -1,13 +1,16 @@
 import logo from './logo.svg';
+import styled from 'styled-components'
 import './App.css';
 
+const Container = styled.div`
+border: 2px solid blue;`
 function App() {
   return (
-    <div className="App">
+    <Container className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          hello bro, how are you what are you doing here
         </p>
         <a
           className="App-link"
@@ -18,7 +21,7 @@ function App() {
           Learn React
         </a>
       </header>
-    </div>
+    </Container>
   );
 }
 
