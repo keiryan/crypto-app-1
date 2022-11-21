@@ -28,7 +28,7 @@ class Navbar extends React.Component {
           <RightNav>
             <Searchbox />
             <CurrencySelector />
-            <ThemeColor />
+            <ThemeColor handleTheme={this.props.handleTheme} />
           </RightNav>
         </NavContainer>
       </Container>
