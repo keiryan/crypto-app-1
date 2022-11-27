@@ -6,12 +6,14 @@ import {
   LinearScale,
   PointElement,
   LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
   Filler,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -22,20 +24,16 @@ ChartJS.register(
   Legend,
   Filler
 );
-const Sparklines = (props) => {
+
+const BarGraph = (props) => {
   return (
-    <Line
+    <Bar
       data={{
-        labels: ["", "", "", "", "", ""],
+        labels: props.data.map((item) => item[0]),
         datasets: [
           {
-            label: "",
-            data: props.coinData.map((price) => {
-              return price;
-            }),
-
+            data: props.data.map((item) => item[1]),
             borderColor: "#000000",
-
             pointRadius: 0,
             borderWidth: 3,
             fill: false,
@@ -50,7 +48,7 @@ const Sparklines = (props) => {
           },
           title: {
             display: false,
-            text: "Chart.js Line Chart",
+            text: "Chart.js Bar Chart",
           },
         },
         scales: {
@@ -74,4 +72,4 @@ const Sparklines = (props) => {
     />
   );
 };
-export default Sparklines;
+export default BarGraph;
