@@ -1,35 +1,32 @@
 import React from "react";
-
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
   BarElement,
   Title,
   Tooltip,
   Legend,
-  Filler,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import moment from "moment";
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
-  Legend,
-  Filler
+  Legend
 );
 
-const BarGraph = (props) => {
+export const BarGraph = (props) => {
   return (
     <Bar
       data={{
-        labels: props.data.map((item) => item[0]),
+        labels: props.data.map((item) => {
+          return moment.unix(item[0] / 1000).format("MM-DD-YY");
+        }),
         datasets: [
           {
             data: props.data.map((item) => item[1]),
@@ -48,7 +45,7 @@ const BarGraph = (props) => {
           },
           title: {
             display: false,
-            text: "Chart.js Bar Chart",
+            text: "Chart.js Line Chart",
           },
         },
         scales: {
@@ -72,4 +69,3 @@ const BarGraph = (props) => {
     />
   );
 };
-export default BarGraph;

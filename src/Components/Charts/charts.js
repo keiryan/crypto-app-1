@@ -1,6 +1,6 @@
 import React from "react";
 import LineGraph from "./Graph/Sparkline.js";
-// import BarGraph from "./Graph/BarChart.js";
+import { BarGraph } from "./Graph/BarChart.js";
 import {
   Container,
   MainContainer,
@@ -37,7 +37,7 @@ class CoinChart extends React.Component {
             </Wrapper>
             <Div>
               {this.props.coinVolume?.prices && (
-                <LineGraph data={this.props.coinVolume.total_volumes} />
+                <BarGraph data={this.props.coinVolume.total_volumes} />
               )}
             </Div>
           </ChartContainer>
