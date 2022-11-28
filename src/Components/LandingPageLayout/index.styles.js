@@ -1,12 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  border: 1px solid white;
+  /* border: 1px solid white; */
   margin: 0 auto;
   color: white;
 `;
 export const TableDiv = styled.div`
   color: "#fafbfb";
+  /* border: 2px solid blue; */
+  display: flex;
+  justify-content: center;
 `;
 export const TableHeader = styled.th`
   /* border: 1px solid white; */
@@ -14,7 +17,7 @@ export const TableHeader = styled.th`
 `;
 export const TableRow = styled.tr``;
 export const Table = styled.table`
-  /* border: 1px solid white; */
+  /* border: 1px solid green; */
 `;
 export const TableData = styled.td`
   /* border: 1px solid yellow; */
@@ -41,12 +44,12 @@ export const Progress = styled.progress`
   width: 180px;
 `;
 export const DivProgressBar = styled.div`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   height: 10px;
   border-radius: 5px;
   background-color: green;
 `;
 export const SparklineDiv = styled.div`
   width: 70px;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 `;

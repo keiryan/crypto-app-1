@@ -4,7 +4,7 @@ import { Container } from "./App.styles.js";
 import Navbar from "./Components/Navbar/index";
 import { GlobalStyle } from "./styles/Globalstyles.js";
 import { ThemeProvider } from "styled-components";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const theme = {
   color: {
@@ -20,7 +20,6 @@ class App extends React.Component {
     return this.setState({ themeColor: !this.state.themeColor });
   };
   render() {
-    // console.log(this.state.themeColor);
     return (
       <ThemeProvider theme={theme}>
         <Router>

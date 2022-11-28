@@ -12,6 +12,8 @@ import {
   Filler,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import moment from "moment";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -22,20 +24,17 @@ ChartJS.register(
   Legend,
   Filler
 );
-const Sparklines = (props) => {
+const LineGraph = (props) => {
   return (
     <Line
       data={{
-        labels: ["", "", "", "", "", ""],
+        labels: props.data.map((item) => {
+          return moment.unix(item[0] / 1000).format("MM-DD-YY");
+        }),
         datasets: [
           {
-            label: "",
-            data: props.coinData.map((price) => {
-              return price;
-            }),
-
+            data: props.data.map((item) => item[1]),
             borderColor: "#000000",
-
             pointRadius: 0,
             borderWidth: 3,
             fill: false,
@@ -74,4 +73,5 @@ const Sparklines = (props) => {
     />
   );
 };
-export default Sparklines;
+
+export default LineGraph;

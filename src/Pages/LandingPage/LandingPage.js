@@ -1,15 +1,17 @@
 import React from "react";
 import LandingPageLayout from "../../Components/LandingPageLayout";
-// import { Para } from "./index.styles.js";
 import axios from "axios";
+// import CoinChart from "../../Components/Charts/charts";
 // import { getConfig } from "@testing-library/react";
 
 class LandingPage extends React.Component {
   state = {
     coinData: [],
+    coinPriceVolume: null,
     coinVolume: 5,
     isError: false,
     isLoading: false,
+    days: 10,
   };
   getCoinData = async () => {
     try {
@@ -17,26 +19,37 @@ class LandingPage extends React.Component {
       const response = await axios(
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${this.state.coinVolume}&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
       );
-      // console.log("response", response.data);
       this.setState({ coinData: response.data, isLoading: false });
     } catch (err) {
       this.setState({ isError: true });
-      // console.log("error");
+    }
+  };
+
+  getCoinPriceVolume = async () => {
+    try {
+      this.setState({ isLoading: true });
+      const response = await axios(
+        `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=${this.state.days}&interval=daily`
+      );
+      this.setState({ coinPriceVolume: response.data, isLoading: false });
+    } catch (err) {
+      this.setState({ isError: true });
     }
   };
   componentDidMount() {
     this.getCoinData();
-    // console.log("loading");
+    this.getCoinPriceVolume();
   }
 
   render() {
-    console.log(this.state.coinData.sparkline_in_7d.price);
+    // console.log("slow", this.state.coinData);
+    // console.log("fast", this.state.coinPriceVolume);
     return (
       <div>
-        {!this.state.isLoading && this.state.coinData ? (
+        {!this.state.isLoading && this.state.coinData.length ? (
           <LandingPageLayout
             items={this.state.coinData}
-            // textcolor={this.props.textcolor}
+            coinVolume={this.state.coinPriceVolume}
           />
         ) : (
           <h1>Error</h1>

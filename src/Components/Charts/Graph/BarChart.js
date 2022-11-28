@@ -1,41 +1,36 @@
 import React from "react";
-
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
-  Filler,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
+import moment from "moment";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
-  Legend,
-  Filler
+  Legend
 );
-const Sparklines = (props) => {
+
+export const BarGraph = (props) => {
   return (
-    <Line
+    <Bar
       data={{
-        labels: ["", "", "", "", "", ""],
+        labels: props.data.map((item) => {
+          return moment.unix(item[0] / 1000).format("MM-DD-YY");
+        }),
         datasets: [
           {
-            label: "",
-            data: props.coinData.map((price) => {
-              return price;
-            }),
-
+            data: props.data.map((item) => item[1]),
             borderColor: "#000000",
-
             pointRadius: 0,
             borderWidth: 3,
             fill: false,
@@ -74,4 +69,3 @@ const Sparklines = (props) => {
     />
   );
 };
-export default Sparklines;
