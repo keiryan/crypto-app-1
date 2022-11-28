@@ -2,7 +2,7 @@ import React from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import CoinChart from "../Charts/charts.js";
 import Sparklines from "../Sparkline/Sparkline.js";
-// import { Sparklines } from "react-sparklines";
+
 import {
   TableDiv,
   Table,
@@ -15,11 +15,9 @@ import {
   Label,
   DivProgressBar,
   SparklineDiv,
-  // Progress,
 } from "./index.styles.js";
 
 export default function LandingPageLayout({ items, coinVolume }) {
-  // console.log("adelaide", coinVolume);
   return (
     <>
       <CoinChart coinVolume={coinVolume} />
