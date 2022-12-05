@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+
 import {
   Wrapper,
   CoinLogo,
@@ -13,8 +14,10 @@ import {
   NestedDiv,
   NestedTimeList,
   NestedDataList,
+  Styledarrow,
 } from "../ChooseCoin/index.styles";
 import { FaAngleDown } from "react-icons/fa";
+// import userEvent from "@testing-library/user-event";
 
 const NestedCoinList = () => {
   return (
@@ -49,6 +52,30 @@ const PeriodSelect = () => {
   );
 };
 
+export function ClickOutsideBox(props) {
+  const ref = useRef(null);
+  const { onClickOutside } = props;
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.targ)) {
+        onClickOutside && onClickOutside();
+      }
+    };
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, [onClickOutside]);
+  if (!props.show) return null;
+  return (
+    <div ref={ref}>
+      <CoinLogo />
+      <Info>Bitcoin</Info>
+      <FaAngleDown />
+    </div>
+  );
+}
+
 class DisplayChartNavbar extends React.Component {
   state = {
     list: false,
@@ -77,14 +104,12 @@ class DisplayChartNavbar extends React.Component {
     });
   };
   render() {
-    console.log("check", this.state.list);
     return (
       <Wrapper>
         <TableNavbar>
-          <CoinSelection>
-            <CoinLogo />
-            <Info onClick={this.handleList}>Bitcoin</Info>
-            <FaAngleDown onClick={this.handleList} />
+          <CoinSelection onClick={this.handleList}>
+            <Info>Bitcoin</Info>
+            <Styledarrow />
           </CoinSelection>
           <NestedList> {this.state.list && <NestedCoinList />}</NestedList>
         </TableNavbar>
@@ -92,7 +117,8 @@ class DisplayChartNavbar extends React.Component {
           <Div>
             <CoinDisplayType onClick={this.handleDatatype}>
               <Info>Data Type</Info>
-              <FaAngleDown />
+
+              <Styledarrow />
             </CoinDisplayType>
             <NestedDataList>
               {this.state.dataType && <CoinInfoType />}
@@ -101,7 +127,8 @@ class DisplayChartNavbar extends React.Component {
           <TimeDiv>
             <NestedDiv onClick={this.handleTimeSelect}>
               <Info>Weekly</Info>
-              <FaAngleDown />
+
+              <Styledarrow />
             </NestedDiv>
             <NestedTimeList>
               {this.state.timeSelect && <PeriodSelect />}

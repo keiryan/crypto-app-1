@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { FaAngleUp } from "react-icons/fa";
+import { FaAngleDown } from "react-icons/fa";
 
 export const Container = styled.div`
   margin: 0 auto;
@@ -19,6 +21,7 @@ export const TableHeader = styled.th`
 export const TableRow = styled.tr``;
 export const Table = styled.table`
   width: 100%;
+  color: white;
   box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.5);
 `;
 export const TableData = styled.td`
@@ -66,3 +69,14 @@ export const WrapperContainer = styled.div`
   margin-bottom: 2.5rem;
 `;
 export const MainWrapper = styled.div``;
+export const StyledArrowUp = styled(FaAngleUp)`
+  color: rgba(255, 255, 255, 0.9);
+  /* border: solid green; */
+  padding-top: 0.8rem;
+  font-size: 1.5rem;
+`;
+export const StyledArrowDown = styled(FaAngleDown)`
+  color: rgba(255, 255, 255, 0.9);
+  padding-top: 0.8rem;
+  font-size: 1.5rem;
+`;

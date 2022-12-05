@@ -35,6 +35,44 @@ export const ChartContainer = styled.div`
 `;
 export const IndicatorContainer = styled.div`
   box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.5);
-
+  padding: 0.5rem 1rem;
+  position: relative;
   width: 30%;
+  font-family: Arial, Helvetica, sans-serif;
+`;
+export const PieInfo = styled.p`
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0.5rem;
+  font-size: 1.1rem;
+`;
+export const GreedFigure = styled.div`
+  /* border: solid white; */
+  width: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  color: rgba(255, 255, 255, 0.9);
+  transform: translate(-50%, -50%);
+  h2 {
+    font-size: 2.5rem;
+  }
+`;
+export const Summary = styled.div`
+  display: flex;
+  /* border: white solid; */
+  justify-content: space-between;
+  padding: 1rem;
+  position: absolute;
+  width: 100%;
+  bottom: 2%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  li {
+    /* border: solid white; */
+    padding: 3px;
+    list-style: none;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+  }
 `;

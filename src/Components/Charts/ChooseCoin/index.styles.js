@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FaAngleDown } from "react-icons/fa";
 export const Wrapper = styled.div`
   width: 95%;
   align-items: center;
@@ -63,7 +64,7 @@ export const InnerDiv = styled.div`
 `;
 export const Info = styled.p`
   margin-right: 1rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.9);
 `;
 export const TableNavbar = styled.div`
   display: flex;
@@ -119,4 +120,7 @@ export const NestedDataList = styled.div`
 `;
 export const Div = styled.div`
   position: relative;
+`;
+export const Styledarrow = styled(FaAngleDown)`
+  color: green;
 `;

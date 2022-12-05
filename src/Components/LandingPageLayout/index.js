@@ -20,26 +20,45 @@ import {
   CoinInfo,
   WrapperContainer,
   MainWrapper,
+  StyledArrowUp,
+  StyledArrowDown,
 } from "./index.styles.js";
 
-export default function LandingPageLayout({ items, coinValue, ...props }) {
+export default function LandingPageLayout({
+  items,
+  coinValue,
+  greedValue,
+  ...props
+}) {
   return (
     <MainWrapper>
       <WrapperContainer>
         <PageHeader />
-        <CoinChart coinValue={coinValue} />
+        <CoinChart coinValue={coinValue} greedValue={greedValue} />
       </WrapperContainer>
 
       <TableDiv>
         {
           <Table>
             <TableRow>
-              <TableHeader>#</TableHeader>
-              <TableHeader>Name</TableHeader>
-              <TableHeader>Price</TableHeader>
-              <TableHeader>1h%</TableHeader>
-              <TableHeader>24h%</TableHeader>
-              <TableHeader>7d%</TableHeader>
+              <TableHeader>
+                # <StyledArrowDown />
+              </TableHeader>
+              <TableHeader>
+                Name <StyledArrowDown />
+              </TableHeader>
+              <TableHeader>
+                Price <StyledArrowDown />
+              </TableHeader>
+              <TableHeader>
+                1h% <StyledArrowDown />
+              </TableHeader>
+              <TableHeader>
+                24h% <StyledArrowDown />
+              </TableHeader>
+              <TableHeader>
+                7d% <StyledArrowDown />
+              </TableHeader>
               <TableHeader>24h Volume/Market Cap</TableHeader>
               <TableHeader>Circulating/Total Supply</TableHeader>
               <TableHeader>Last 7d</TableHeader>
@@ -58,18 +77,18 @@ export default function LandingPageLayout({ items, coinValue, ...props }) {
                   <TableData>${element.current_price}</TableData>
                   <TableData>
                     {element.price_change_percentage_1h_in_currency > 0 ? (
-                      <FaAngleUp />
+                      <StyledArrowUp />
                     ) : (
-                      <FaAngleDown />
+                      <StyledArrowDown />
                     )}
                     {element.price_change_percentage_1h_in_currency.toFixed(2)}%
                   </TableData>
                   <TableData>
                     {" "}
                     {element.price_change_percentage_24h_in_currency > 0 ? (
-                      <FaAngleUp />
+                      <StyledArrowUp />
                     ) : (
-                      <FaAngleDown />
+                      <StyledArrowDown />
                     )}
                     {element.price_change_percentage_24h_in_currency.toFixed(2)}
                     %
@@ -77,9 +96,9 @@ export default function LandingPageLayout({ items, coinValue, ...props }) {
                   <TableData>
                     {" "}
                     {element.price_change_percentage_7d_in_currency > 0 ? (
-                      <FaAngleUp />
+                      <StyledArrowUp />
                     ) : (
-                      <FaAngleDown />
+                      <StyledArrowDown />
                     )}
                     {element.price_change_percentage_7d_in_currency.toFixed(2)}%
                   </TableData>
