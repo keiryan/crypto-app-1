@@ -1,6 +1,8 @@
 import React from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import CoinChart from "../Charts/charts.js";
+import { PageHeader } from "../DisplayHeader/index.js";
+
 import Sparklines from "../Sparkline/Sparkline.js";
 
 import {
@@ -15,12 +17,18 @@ import {
   Label,
   DivProgressBar,
   SparklineDiv,
+  CoinInfo,
+  WrapperContainer,
+  MainWrapper,
 } from "./index.styles.js";
 
-export default function LandingPageLayout({ items, coinVolume }) {
+export default function LandingPageLayout({ items, coinValue, ...props }) {
   return (
-    <>
-      <CoinChart coinVolume={coinVolume} />
+    <MainWrapper>
+      <WrapperContainer>
+        <PageHeader />
+        <CoinChart coinValue={coinValue} />
+      </WrapperContainer>
 
       <TableDiv>
         {
@@ -38,18 +46,14 @@ export default function LandingPageLayout({ items, coinVolume }) {
             </TableRow>
 
             {items.map((element, index) => {
-              console.log(
-                "print_item",
-                element.sparkline_in_7d.price.map((value) => value)
-              );
               return (
                 <TableRow>
                   <TableData>{index + 1}</TableData>
                   <TableData>
-                    <div>
+                    <CoinInfo>
                       <CoinImage src={element.image} /> {element.name} (
-                      {element.symbol})
-                    </div>
+                      {element.symbol.toUpperCase()})
+                    </CoinInfo>
                   </TableData>
                   <TableData>${element.current_price}</TableData>
                   <TableData>
@@ -147,6 +151,6 @@ export default function LandingPageLayout({ items, coinVolume }) {
           </Table>
         }
       </TableDiv>
-    </>
+    </MainWrapper>
   );
 }

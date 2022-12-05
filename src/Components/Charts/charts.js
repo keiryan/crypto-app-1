@@ -1,15 +1,14 @@
 import React from "react";
+
 import LineGraph from "./Graph/Sparkline.js";
-import { BarGraph } from "./Graph/BarChart.js";
+import DisplayChartNavbar from "./ChooseCoin/SelectCoin.js";
 import {
   Container,
   MainContainer,
   ChartContainer,
-  Wrapper,
   Div,
-  Price,
-  Date,
-  P,
+  CoinInfoDiv,
+  IndicatorContainer,
 } from "./charts.styles.js";
 
 class CoinChart extends React.Component {
@@ -18,29 +17,19 @@ class CoinChart extends React.Component {
       <Container>
         <MainContainer>
           <ChartContainer>
-            <Wrapper>
-              <P>Price</P>
-              <Price>$24.27 ths</Price>
-              <Date>February 16, 2022</Date>
-            </Wrapper>
+            <CoinInfoDiv>
+              <DisplayChartNavbar />
+            </CoinInfoDiv>
             <Div>
-              {this.props.coinVolume?.prices && (
-                <LineGraph data={this.props.coinVolume.prices} />
+              {this.props.coinValue?.prices && (
+                <LineGraph
+                  data={this.props.coinValue.prices}
+                  volume={this.props.coinValue.total_volumes}
+                />
               )}
             </Div>
           </ChartContainer>
-          <ChartContainer>
-            <Wrapper>
-              <P>Volume 24h</P>
-              <Price>$24.27 ths</Price>
-              <Date>{this.getDate}</Date>
-            </Wrapper>
-            <Div>
-              {this.props.coinVolume?.prices && (
-                <BarGraph data={this.props.coinVolume.total_volumes} />
-              )}
-            </Div>
-          </ChartContainer>
+          <IndicatorContainer></IndicatorContainer>
         </MainContainer>
       </Container>
     );

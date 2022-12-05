@@ -8,21 +8,29 @@ export const TableDiv = styled.div`
   color: "#fafbfb";
   display: flex;
   justify-content: center;
+
+  width: 90%;
+  margin-inline: auto;
 `;
 export const TableHeader = styled.th`
-  padding: 4px 10px;
+  padding: 8px 0px;
+  text-shadow: 0.5px 0.5px 0px rgba(255, 255, 255, 0.2);
 `;
 export const TableRow = styled.tr``;
-export const Table = styled.table``;
+export const Table = styled.table`
+  width: 100%;
+  box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.5);
+`;
 export const TableData = styled.td`
-  padding: 4px 10px;
+  padding: 15px;
 `;
 export const TableProgressChart = styled.td`
   padding: 4px 10px;
 `;
 export const CoinImage = styled.img`
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
 `;
 export const Div = styled.div`
   display: flex;
@@ -43,3 +51,18 @@ export const DivProgressBar = styled.div`
 export const SparklineDiv = styled.div`
   width: 70px;
 `;
+export const Hr = styled.hr`
+  color: white;
+  width: 100%;
+  display: block;
+`;
+
+export const CoinInfo = styled.div`
+  display: flex;
+  align-items: center;
+`;
+export const Icon = styled.div``;
+export const WrapperContainer = styled.div`
+  margin-bottom: 2.5rem;
+`;
+export const MainWrapper = styled.div``;

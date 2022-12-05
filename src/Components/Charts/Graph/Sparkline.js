@@ -34,10 +34,16 @@ const LineGraph = (props) => {
         datasets: [
           {
             data: props.data.map((item) => item[1]),
-            borderColor: "#000000",
+            borderColor: "green",
             pointRadius: 0,
-            borderWidth: 3,
+            borderWidth: 1.2,
             fill: false,
+          },
+          {
+            data: props.volume.map((item) => item[1] / 10000000),
+            borderColor: "lightblue",
+            borderWidth: 1.2,
+            pointRadius: 0,
           },
         ],
       }}
@@ -54,17 +60,17 @@ const LineGraph = (props) => {
         },
         scales: {
           y: {
-            display: false,
+            display: true,
             grid: {
-              display: false,
-              drawBorder: false,
+              display: true,
+              drawBorder: true,
             },
           },
           x: {
             display: true,
             grid: {
-              display: false,
-              drawBorder: false,
+              display: true,
+              drawBorder: true,
             },
           },
         },

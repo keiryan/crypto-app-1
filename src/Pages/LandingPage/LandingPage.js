@@ -1,17 +1,15 @@
 import React from "react";
 import LandingPageLayout from "../../Components/LandingPageLayout";
 import axios from "axios";
-// import CoinChart from "../../Components/Charts/charts";
-// import { getConfig } from "@testing-library/react";
 
 class LandingPage extends React.Component {
   state = {
     coinData: [],
     coinPriceVolume: null,
-    coinVolume: 5,
+    coinVolume: 10,
     isError: false,
     isLoading: false,
-    days: 10,
+    days: 30,
   };
   getCoinData = async () => {
     try {
@@ -42,14 +40,13 @@ class LandingPage extends React.Component {
   }
 
   render() {
-    // console.log("slow", this.state.coinData);
-    // console.log("fast", this.state.coinPriceVolume);
+    // console.log(this.getCoinData);
     return (
       <div>
         {!this.state.isLoading && this.state.coinData.length ? (
           <LandingPageLayout
             items={this.state.coinData}
-            coinVolume={this.state.coinPriceVolume}
+            coinValue={this.state.coinPriceVolume}
           />
         ) : (
           <h1>Error</h1>
