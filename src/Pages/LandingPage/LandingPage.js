@@ -11,6 +11,7 @@ class LandingPage extends React.Component {
     isLoading: false,
     days: 30,
     greedValue: null,
+    coinList: null,
   };
   getCoinData = async () => {
     try {
@@ -18,7 +19,11 @@ class LandingPage extends React.Component {
       const response = await axios(
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${this.state.coinVolume}&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
       );
-      this.setState({ coinData: response.data, isLoading: false });
+      this.setState({
+        coinData: response.data,
+        isLoading: false,
+        coinList: response.data,
+      });
     } catch (err) {
       this.setState({ isError: true });
     }
@@ -45,6 +50,7 @@ class LandingPage extends React.Component {
       this.setState({ isError: true });
     }
   };
+
   componentDidMount() {
     this.getCoinData();
     this.getCoinPriceVolume();
@@ -52,6 +58,7 @@ class LandingPage extends React.Component {
   }
 
   render() {
+    console.log("hello bro what", this.state.coinList);
     return (
       <div>
         {!this.state.isLoading && this.state.coinData.length ? (
@@ -59,6 +66,7 @@ class LandingPage extends React.Component {
             items={this.state.coinData}
             coinValue={this.state.coinPriceVolume}
             greedValue={this.state.greedValue}
+            coinList={this.state.coinList}
           />
         ) : (
           <h1>Error</h1>

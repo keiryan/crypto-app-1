@@ -28,13 +28,18 @@ export default function LandingPageLayout({
   items,
   coinValue,
   greedValue,
+  coinList,
   ...props
 }) {
   return (
     <MainWrapper>
       <WrapperContainer>
         <PageHeader />
-        <CoinChart coinValue={coinValue} greedValue={greedValue} />
+        <CoinChart
+          coinValue={coinValue}
+          greedValue={greedValue}
+          coinList={coinList}
+        />
       </WrapperContainer>
 
       <TableDiv>
