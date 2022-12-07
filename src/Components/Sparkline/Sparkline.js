@@ -34,11 +34,11 @@ const Sparklines = (props) => {
               return price;
             }),
 
-            borderColor: "#000000",
+            borderColor: "lightgreen",
 
             pointRadius: 0,
-            borderWidth: 3,
-            fill: false,
+            borderWidth: 1.2,
+            fill: true,
           },
         ],
       }}

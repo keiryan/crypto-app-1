@@ -10,6 +10,7 @@ class LandingPage extends React.Component {
     isError: false,
     isLoading: false,
     days: 30,
+    greedValue: null,
   };
   getCoinData = async () => {
     try {
@@ -34,19 +35,30 @@ class LandingPage extends React.Component {
       this.setState({ isError: true });
     }
   };
+  getFearIndex = async () => {
+    try {
+      this.setState({ isLoading: true });
+      const response = await axios(`https://api.alternative.me/fng/?limit=3`);
+
+      this.setState({ greedValue: response.data });
+    } catch (err) {
+      this.setState({ isError: true });
+    }
+  };
   componentDidMount() {
     this.getCoinData();
     this.getCoinPriceVolume();
+    this.getFearIndex();
   }
 
   render() {
-    // console.log(this.getCoinData);
     return (
       <div>
         {!this.state.isLoading && this.state.coinData.length ? (
           <LandingPageLayout
             items={this.state.coinData}
             coinValue={this.state.coinPriceVolume}
+            greedValue={this.state.greedValue}
           />
         ) : (
           <h1>Error</h1>
