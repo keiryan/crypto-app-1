@@ -23,7 +23,8 @@ export const CoinSelection = styled.div`
 export const NestedList = styled.div`
   position: absolute;
   top: 108%;
-  width: 105px;
+  left: -15%;
+  width: 130px;
 
   ul {
     box-shadow: 0px 0px 2px 2px #272735;
@@ -33,10 +34,10 @@ export const NestedList = styled.div`
     list-style: none;
     background-color: #111111;
     text-align: center;
-    padding: 3px 5px;
+    padding: 6px 5px;
     font-family: Arial, Helvetica, sans-serif;
     &:hover {
-      background-color: #2b2d42;
+      background-color: white;
       color: black;
     }
   }
@@ -61,6 +62,12 @@ export const TimeDiv = styled.div`
 `;
 export const InnerDiv = styled.div`
   display: flex;
+`;
+export const StyledInput = styled.input`
+  /* border: solid blue; */
+  padding: 3px 3px;
+  width: 130px;
+  margin-left: -0.3rem;
 `;
 export const Info = styled.p`
   margin-right: 1rem;
@@ -93,7 +100,7 @@ export const NestedTimeList = styled.div`
     font-family: Arial, Helvetica, sans-serif;
 
     &:hover {
-      background-color: #2b2d42;
+      background-color: white;
       color: black;
     }
   }
@@ -114,7 +121,8 @@ export const NestedDataList = styled.div`
     background-color: #111111;
     font-family: Arial, Helvetica, sans-serif;
     &:hover {
-      background-color: #2b2d42;
+      background-color: white;
+      color: black;
     }
   }
 `;

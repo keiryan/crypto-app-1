@@ -1,8 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
 import {
   Wrapper,
-  CoinLogo,
   CoinSelection,
   CoinDisplayType,
   TimeDiv,
@@ -15,19 +14,19 @@ import {
   NestedTimeList,
   NestedDataList,
   Styledarrow,
+  StyledInput,
 } from "../ChooseCoin/index.styles";
-import { FaAngleDown } from "react-icons/fa";
-// import userEvent from "@testing-library/user-event";
 
-const NestedCoinList = () => {
+const NestedCoinList = (props) => {
   return (
     <div>
       <ul>
-        <li>Bitcoin</li>
-        <li>Ethereum</li>
-        <li>Tether</li>
-        <li>Binance</li>
-        <li>XRP</li>
+        <li>
+          <Input onChange={props.handleFilter} />
+        </li>
+        {props.list.map((item) => (
+          <li>{item.name}</li>
+        ))}
       </ul>
     </div>
   );
@@ -44,44 +43,31 @@ const CoinInfoType = () => {
 const PeriodSelect = () => {
   return (
     <ul>
-      <li>1 day</li>
-      <li>1 week</li>
-      <li>1 month</li>
-      <li>1 year</li>
+      <li id="3">1 day</li>
+      <li id="7">1 week</li>
+      <li id="30">1 month</li>
+      <li id="365">1 year</li>
     </ul>
   );
 };
 
-export function ClickOutsideBox(props) {
-  const ref = useRef(null);
-  const { onClickOutside } = props;
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (ref.current && !ref.current.contains(e.targ)) {
-        onClickOutside && onClickOutside();
-      }
-    };
-    document.addEventListener("click", handleClickOutside, true);
-    return () => {
-      document.removeEventListener("click", handleClickOutside, true);
-    };
-  }, [onClickOutside]);
-  if (!props.show) return null;
-  return (
-    <div ref={ref}>
-      <CoinLogo />
-      <Info>Bitcoin</Info>
-      <FaAngleDown />
-    </div>
-  );
-}
+const Input = () => {
+  return <StyledInput placeholder="Search coin..." />;
+};
 
 class DisplayChartNavbar extends React.Component {
   state = {
     list: false,
     dataType: false,
     timeSelect: false,
+    coinList: this.props.coinList,
+    input: "",
   };
+
+  handleFilter = (e) => {
+    this.setState({ input: e.target.value });
+  };
+  handleSame = (item) => {};
   handleList = () => {
     this.setState({
       list: !this.state.list,
@@ -103,7 +89,16 @@ class DisplayChartNavbar extends React.Component {
       list: false,
     });
   };
+
   render() {
+    // const inputValue = this.state.input;
+    // const lowerCase =
+    //   inputValue.split("")[0].toUpperCase() + inputValue.slice(1);
+    // const lowerCaseCoinList = this.state.coinList?.map((item) => item.name);
+    // const filterItem = lowerCaseCoinList.filter((element) =>
+    //   element.name.includes(lowerCase)
+    // );
+
     return (
       <Wrapper>
         <TableNavbar>
@@ -111,7 +106,15 @@ class DisplayChartNavbar extends React.Component {
             <Info>Bitcoin</Info>
             <Styledarrow />
           </CoinSelection>
-          <NestedList> {this.state.list && <NestedCoinList />}</NestedList>
+          <NestedList>
+            {this.state.list && (
+              <NestedCoinList
+                list={this.state.coinList}
+                handleFilter={this.handleFilter}
+                value={this.state.input}
+              />
+            )}
+          </NestedList>
         </TableNavbar>
         <InnerDiv>
           <Div>
