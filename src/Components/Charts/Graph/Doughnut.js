@@ -26,8 +26,11 @@ export const PieGraph = (props) => {
         labels: ["Red", "Blue", "Green"],
         datasets: [
           {
-            data: props.greedValue.map((item) => item.value),
-            backgroundColor: ["#336699", "#99ccff", "#cccc99"],
+            data: [
+              props.greedValue.map((item) => item.value),
+              100 - props.greedValue.map((item) => item.value),
+            ],
+            backgroundColor: ["#336699", "#99ccff"],
             display: true,
             borderColor: "#d1d6dc",
             borderWidth: 1,

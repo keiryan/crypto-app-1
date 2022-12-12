@@ -10,8 +10,11 @@ export const Wrapper = styled.div`
   h2 {
     width: fit-content;
     margin: 0.2rem 0;
+    font-size: 1.3rem;
   }
   p {
     width: fit-content;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.4);
   }
 `;

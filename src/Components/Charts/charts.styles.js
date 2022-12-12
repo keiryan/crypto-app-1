@@ -31,7 +31,7 @@ export const ChartContainer = styled.div`
   box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.5);
   padding: 1rem;
   width: 67%;
-  max-height: 450px;
+  /* max-height: 450px; */
 `;
 export const IndicatorContainer = styled.div`
   box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.5);

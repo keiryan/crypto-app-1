@@ -22,7 +22,12 @@ class CoinChart extends React.Component {
         <MainContainer>
           <ChartContainer>
             <CoinInfoDiv>
-              <DisplayChartNavbar coinList={this.props.coinList} />
+              <DisplayChartNavbar
+                func={this.props.func}
+                coinList={this.props.coinList}
+                alert={this.props.alert}
+                alert2={this.props.alert2}
+              />
             </CoinInfoDiv>
             <Div>
               {this.props.coinValue?.prices && (

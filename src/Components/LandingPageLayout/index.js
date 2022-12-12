@@ -22,6 +22,8 @@ import {
   MainWrapper,
   StyledArrowUp,
   StyledArrowDown,
+  Figure,
+  MainProgressBar,
 } from "./index.styles.js";
 
 export default function LandingPageLayout({
@@ -39,6 +41,8 @@ export default function LandingPageLayout({
           coinValue={coinValue}
           greedValue={greedValue}
           coinList={coinList}
+          alert={props.alert}
+          alert2={props.alert2}
         />
       </WrapperContainer>
 
@@ -46,12 +50,8 @@ export default function LandingPageLayout({
         {
           <Table>
             <TableRow>
-              <TableHeader>
-                # <StyledArrowDown />
-              </TableHeader>
-              <TableHeader>
-                Name <StyledArrowDown />
-              </TableHeader>
+              <TableHeader>#</TableHeader>
+              <TableHeader>Name</TableHeader>
               <TableHeader>
                 Price <StyledArrowDown />
               </TableHeader>
@@ -81,31 +81,49 @@ export default function LandingPageLayout({
                   </TableData>
                   <TableData>${element.current_price}</TableData>
                   <TableData>
-                    {element.price_change_percentage_1h_in_currency > 0 ? (
-                      <StyledArrowUp />
-                    ) : (
-                      <StyledArrowDown />
-                    )}
-                    {element.price_change_percentage_1h_in_currency.toFixed(2)}%
+                    <Figure
+                      element={element.price_change_percentage_1h_in_currency}
+                    >
+                      {element.price_change_percentage_1h_in_currency > 0 ? (
+                        <StyledArrowUp />
+                      ) : (
+                        <StyledArrowDown />
+                      )}
+                      {element.price_change_percentage_1h_in_currency.toFixed(
+                        2
+                      )}
+                      %
+                    </Figure>
                   </TableData>
                   <TableData>
-                    {" "}
-                    {element.price_change_percentage_24h_in_currency > 0 ? (
-                      <StyledArrowUp />
-                    ) : (
-                      <StyledArrowDown />
-                    )}
-                    {element.price_change_percentage_24h_in_currency.toFixed(2)}
-                    %
+                    <Figure
+                      element={element.price_change_percentage_24h_in_currency}
+                    >
+                      {element.price_change_percentage_24h_in_currency > 0 ? (
+                        <StyledArrowUp />
+                      ) : (
+                        <StyledArrowDown />
+                      )}
+                      {element.price_change_percentage_24h_in_currency.toFixed(
+                        2
+                      )}
+                      %
+                    </Figure>
                   </TableData>
                   <TableData>
-                    {" "}
-                    {element.price_change_percentage_7d_in_currency > 0 ? (
-                      <StyledArrowUp />
-                    ) : (
-                      <StyledArrowDown />
-                    )}
-                    {element.price_change_percentage_7d_in_currency.toFixed(2)}%
+                    <Figure
+                      element={element.price_change_percentage_7d_in_currency}
+                    >
+                      {element.price_change_percentage_7d_in_currency > 0 ? (
+                        <StyledArrowUp />
+                      ) : (
+                        <StyledArrowDown />
+                      )}
+                      {element.price_change_percentage_7d_in_currency.toFixed(
+                        2
+                      )}
+                      %
+                    </Figure>
                   </TableData>
                   <TableProgressChart>
                     <Div>
@@ -122,7 +140,7 @@ export default function LandingPageLayout({
                           : (element.market_cap / 1000000).toFixed(1) + "M"}
                       </Label>
                     </Div>
-                    <div>
+                    <MainProgressBar>
                       <DivProgressBar
                         style={{
                           width: `${
@@ -132,7 +150,7 @@ export default function LandingPageLayout({
                           }%`,
                         }}
                       ></DivProgressBar>
-                    </div>
+                    </MainProgressBar>
                   </TableProgressChart>
                   <TableProgressChart>
                     <Div>
@@ -152,7 +170,7 @@ export default function LandingPageLayout({
                           : (element.total_supply / 1000000).toFixed(1) + "M"}
                       </Label>
                     </Div>
-                    <div>
+                    <MainProgressBar>
                       <DivProgressBar
                         style={{
                           width: `${
@@ -162,7 +180,7 @@ export default function LandingPageLayout({
                           }%`,
                         }}
                       ></DivProgressBar>
-                    </div>
+                    </MainProgressBar>
                   </TableProgressChart>
                   <TableData>
                     <SparklineDiv>

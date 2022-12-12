@@ -25,8 +25,10 @@ ChartJS.register(
 const Sparklines = (props) => {
   return (
     <Line
+      width={80}
+      height={13}
       data={{
-        labels: ["", "", "", "", "", ""],
+        labels: new Array(props.coinData?.length).fill(""),
         datasets: [
           {
             label: "",
@@ -35,10 +37,10 @@ const Sparklines = (props) => {
             }),
 
             borderColor: "lightgreen",
-
+            tension: 0.5,
             pointRadius: 0,
-            borderWidth: 1.2,
-            fill: true,
+            borderWidth: 1,
+            fill: false,
           },
         ],
       }}
@@ -69,7 +71,7 @@ const Sparklines = (props) => {
             },
           },
         },
-        tension: 0.5,
+        tension: 0,
       }}
     />
   );
