@@ -4,19 +4,28 @@ import { HiOutlineNewspaper } from "react-icons/hi";
 import { FaWallet } from "react-icons/fa";
 import { AiOutlineFundView } from "react-icons/ai";
 import { SiRedux } from "react-icons/si";
+import { VscAccount } from "react-icons/vsc";
+import { CgTranscript } from "react-icons/cg";
+import { BsStar } from "react-icons/bs";
+import { IoSettingsOutline } from "react-icons/io5";
 
 export const Container = styled.div`
   width: 100%;
+  padding-top: 1rem;
 `;
 export const Div = styled.div`
   text-align: center;
-  margin: 1rem 0 2.5rem 0;
+  margin: 0rem 0 1.6rem 0;
   cursor: pointer;
+  /* border: 1px solid white; */
+  &:hover {
+    color: green;
+  }
 `;
 export const StyleMarket = styled(BsFillBarChartFill)`
   color: white;
 
-  font-size: 30px;
+  font-size: 27px;
   &:hover {
     color: green;
   }
@@ -24,7 +33,7 @@ export const StyleMarket = styled(BsFillBarChartFill)`
 export const StyleLogo = styled(SiRedux)`
   color: white;
 
-  font-size: 30px;
+  font-size: 27px;
   &:hover {
     color: green;
   }
@@ -32,7 +41,7 @@ export const StyleLogo = styled(SiRedux)`
 export const StyleOverview = styled(AiOutlineFundView)`
   color: white;
 
-  font-size: 30px;
+  font-size: 27px;
   &:hover {
     color: green;
   }
@@ -40,7 +49,7 @@ export const StyleOverview = styled(AiOutlineFundView)`
 export const StyleWallet = styled(FaWallet)`
   color: white;
 
-  font-size: 30px;
+  font-size: 27px;
   &:hover {
     color: green;
   }
@@ -48,15 +57,44 @@ export const StyleWallet = styled(FaWallet)`
 export const StyleNews = styled(HiOutlineNewspaper)`
   color: white;
 
-  font-size: 30px;
+  font-size: 27px;
   &:hover {
     color: green;
   }
 `;
 export const Title = styled.p`
   color: white;
-  font-size: 13px;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
   &:hover {
-    color: rgba(255, 255, 255, 0.5);
+    color: green;
+  }
+`;
+export const StyleAccount = styled(VscAccount)`
+  color: white;
+  font-size: 27px;
+  &:hover {
+    color: green;
+  }
+`;
+export const StyleTransaction = styled(CgTranscript)`
+  color: white;
+  font-size: 27px;
+  &:hover {
+    color: green;
+  }
+`;
+export const StylePortfolio = styled(BsStar)`
+  color: white;
+  font-size: 27px;
+  &:hover {
+    color: green;
+  }
+`;
+export const StyleSetting = styled(IoSettingsOutline)`
+  color: white;
+  font-size: 27px;
+  &:hover {
+    color: green;
   }
 `;

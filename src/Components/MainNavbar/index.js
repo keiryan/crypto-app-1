@@ -4,6 +4,10 @@ import { HiOutlineNewspaper } from "react-icons/hi";
 import { FaWallet } from "react-icons/fa";
 import { AiOutlineFundView } from "react-icons/ai";
 import { SiRedux } from "react-icons/si";
+import { VscAccount } from "react-icons/vsc";
+import { CgTranscript } from "react-icons/cg";
+import { BsStar } from "react-icons/bs";
+import { IoSettingsOutline } from "react-icons/io5";
 import {
   Container,
   Div,
@@ -13,6 +17,10 @@ import {
   StyleWallet,
   StyleNews,
   StyleOverview,
+  StyleAccount,
+  StyleTransaction,
+  StylePortfolio,
+  StyleSetting,
 } from "./index.styles";
 
 class MainNavbar extends React.Component {
@@ -48,6 +56,30 @@ class MainNavbar extends React.Component {
             <BsFillBarChartFill />
           </StyleMarket>
           <Title>Market</Title>
+        </Div>
+        <Div>
+          <StyleAccount>
+            <VscAccount />
+          </StyleAccount>
+          <Title>Account</Title>
+        </Div>
+        <Div>
+          <StyleTransaction>
+            <CgTranscript />
+          </StyleTransaction>
+          <Title>Transactions</Title>
+        </Div>
+        <Div>
+          <StylePortfolio>
+            <BsStar />
+          </StylePortfolio>
+          <Title>Portfolio</Title>
+        </Div>
+        <Div>
+          <StyleSetting>
+            <IoSettingsOutline />
+          </StyleSetting>
+          <Title>Setting</Title>
         </Div>
       </Container>
     );

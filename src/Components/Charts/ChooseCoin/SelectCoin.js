@@ -25,28 +25,27 @@ const NestedCoinList = (props) => {
           <Input onChange={props.handleFilter} />
         </li>
         {props.list.map((item) => (
-          <li>{item.name}</li>
+          <li onClick={() => props.handleCoin(item)}>{item.name}</li>
         ))}
       </ul>
     </div>
   );
 };
-const CoinInfoType = () => {
+const CoinInfoType = (props) => {
   return (
     <ul>
-      <li>Price</li>
-      <li>Volume</li>
-      <li>Custom</li>
+      {props.coinInfo.map((item) => (
+        <li onClick={() => props.handleType(item)}>{item.type}</li>
+      ))}
     </ul>
   );
 };
-const PeriodSelect = () => {
+const PeriodSelect = (props) => {
   return (
     <ul>
-      <li id="3">1 day</li>
-      <li id="7">1 week</li>
-      <li id="30">1 month</li>
-      <li id="365">1 year</li>
+      {props.periodInfo.map((item) => (
+        <li onClick={() => props.handleDuration(item)}>{item.period}</li>
+      ))}
     </ul>
   );
 };
@@ -61,9 +60,45 @@ class DisplayChartNavbar extends React.Component {
     dataType: false,
     timeSelect: false,
     coinList: this.props.coinList,
+    selectedTime: "",
+    selectedType: "",
+    selectedCoin: "",
+    periodInfo: [
+      { period: "1 day", id: 1 },
+      { period: "1 week", id: 7 },
+      { period: "1 month", id: 30 },
+      { period: "1 year", id: 365 },
+    ],
+    coinInfo: [
+      { type: "Price", id: "price" },
+      { type: "Volume", id: "volume" },
+      { type: "Custom", id: "custom" },
+    ],
     input: "",
   };
-
+  handleDuration = (item) => {
+    this.state.periodInfo.map((element) => {
+      if (element.id === item.id) {
+        this.props.alert(element.id);
+        this.setState({ selectedTime: element });
+      }
+    });
+  };
+  handleType = (item) => {
+    this.state.coinInfo.map((element) => {
+      if (element.id === item.id) {
+        this.setState({ selectedType: element });
+      }
+    });
+  };
+  handleCoin = (item) => {
+    this.state.coinList.map((element) => {
+      if (element.name === item.name) {
+        this.props.alert2(element.name);
+        this.setState({ selectedCoin: element });
+      }
+    });
+  };
   handleFilter = (e) => {
     this.setState({ input: e.target.value });
   };
@@ -98,12 +133,16 @@ class DisplayChartNavbar extends React.Component {
     // const filterItem = lowerCaseCoinList.filter((element) =>
     //   element.name.includes(lowerCase)
     // );
-
+    const func = this.state.selectedTime;
     return (
       <Wrapper>
         <TableNavbar>
           <CoinSelection onClick={this.handleList}>
-            <Info>Bitcoin</Info>
+            <Info>
+              {this.state.selectedCoin
+                ? this.state.selectedCoin.name
+                : "Bitcoin"}
+            </Info>
             <Styledarrow />
           </CoinSelection>
           <NestedList>
@@ -112,6 +151,7 @@ class DisplayChartNavbar extends React.Component {
                 list={this.state.coinList}
                 handleFilter={this.handleFilter}
                 value={this.state.input}
+                handleCoin={this.handleCoin}
               />
             )}
           </NestedList>
@@ -119,22 +159,40 @@ class DisplayChartNavbar extends React.Component {
         <InnerDiv>
           <Div>
             <CoinDisplayType onClick={this.handleDatatype}>
-              <Info>Data Type</Info>
+              <Info>
+                {this.state.selectedType
+                  ? this.state.selectedType.type
+                  : "Price"}
+              </Info>
 
               <Styledarrow />
             </CoinDisplayType>
             <NestedDataList>
-              {this.state.dataType && <CoinInfoType />}
+              {this.state.dataType && (
+                <CoinInfoType
+                  coinInfo={this.state.coinInfo}
+                  handleType={this.handleType}
+                />
+              )}
             </NestedDataList>
           </Div>
           <TimeDiv>
             <NestedDiv onClick={this.handleTimeSelect}>
-              <Info>Weekly</Info>
+              <Info onClick={() => this.props.alert(this.state.selectedTime)}>
+                {this.state.selectedTime
+                  ? this.state.selectedTime.period
+                  : "week"}
+              </Info>
 
               <Styledarrow />
             </NestedDiv>
             <NestedTimeList>
-              {this.state.timeSelect && <PeriodSelect />}
+              {this.state.timeSelect && (
+                <PeriodSelect
+                  handleDuration={this.handleDuration}
+                  periodInfo={this.state.periodInfo}
+                />
+              )}
             </NestedTimeList>
           </TimeDiv>
         </InnerDiv>

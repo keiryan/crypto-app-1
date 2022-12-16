@@ -4,14 +4,27 @@ import axios from "axios";
 
 class LandingPage extends React.Component {
   state = {
+    coinVolume: 10,
     coinData: [],
     coinPriceVolume: null,
-    coinVolume: 10,
+    coinList: null,
+    period: null,
+    greedValue: null,
+    selectedCoin: "",
     isError: false,
     isLoading: false,
-    days: 30,
-    greedValue: null,
-    coinList: null,
+  };
+  ParentAlert = (number) => {
+    return this.setState({ period: number });
+  };
+  componentDidUpdate(prevprops, prevState) {
+    if (prevState.period !== this.state.period) {
+      // console.log("state has been changed", prevState.days, this.state.days);
+      this.setState({ days: this.state.days });
+    }
+  }
+  ParentSelectCoin = (coin) => {
+    this.setState({ selectedCoin: coin.toLowerCase() });
   };
   getCoinData = async () => {
     try {
@@ -33,7 +46,7 @@ class LandingPage extends React.Component {
     try {
       this.setState({ isLoading: true });
       const response = await axios(
-        `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=${this.state.days}&interval=daily`
+        `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=${this.state.period}&interval=daily`
       );
       this.setState({ coinPriceVolume: response.data, isLoading: false });
     } catch (err) {
@@ -43,7 +56,7 @@ class LandingPage extends React.Component {
   getFearIndex = async () => {
     try {
       this.setState({ isLoading: true });
-      const response = await axios(`https://api.alternative.me/fng/?limit=3`);
+      const response = await axios(`https://api.alternative.me/fng/?limit=1`);
 
       this.setState({ greedValue: response.data });
     } catch (err) {
@@ -58,15 +71,18 @@ class LandingPage extends React.Component {
   }
 
   render() {
-    console.log("hello bro what", this.state.coinList);
+    console.log("coindata", this.state.coinData);
     return (
       <div>
         {!this.state.isLoading && this.state.coinData.length ? (
           <LandingPageLayout
+            func={this.setDays}
             items={this.state.coinData}
             coinValue={this.state.coinPriceVolume}
             greedValue={this.state.greedValue}
             coinList={this.state.coinList}
+            alert={this.ParentAlert}
+            alert2={this.ParentSelectCoin}
           />
         ) : (
           <h1>Error</h1>
