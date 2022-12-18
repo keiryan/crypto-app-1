@@ -1,5 +1,5 @@
 import React from "react";
-import { CoinPage, LandingPage, PortfolioPage } from "./Pages";
+import { CoinPage, LandingPage, PortfolioPage, Setting } from "./Pages";
 import { Container, Wrapper, Nav } from "./App.styles.js";
 import Navbar from "./Components/Navbar/index";
 import { GlobalStyle } from "./styles/Globalstyles.js";
@@ -15,10 +15,10 @@ const theme = {
 };
 class App extends React.Component {
   state = {
-    themeColor: false,
+    isActive: false,
   };
-  handleTheme = () => {
-    return this.setState({ themeColor: !this.state.themeColor });
+  handleIsActive = () => {
+    this.setState({ isActive: !this.state.isActive });
   };
   render() {
     return (
@@ -32,14 +32,10 @@ class App extends React.Component {
             <Wrapper>
               <Navbar handleTheme={this.handleTheme} />
               <Switch>
-                <Route
-                  path="/"
-                  exact
-                  component={LandingPage}
-                  // textcolor={this.state.themeColor}
-                />
-                <Route path="#" exact component={PortfolioPage} />
-                <Route path="#" exact component={CoinPage} />
+                <Route path="/" exact component={LandingPage} />
+                <Route path="/PortfolioPage" exact component={PortfolioPage} />
+                <Route path="/CoinPage" exact component={CoinPage} />
+                <Route path="/Setting" exact component={Setting} />
               </Switch>
             </Wrapper>
           </Container>

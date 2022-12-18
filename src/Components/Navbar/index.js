@@ -1,8 +1,16 @@
 import React from "react";
 import Searchbox from "../Searchbar/index.js";
-import NewAccountInfo from "../CreateAccount/index.js";
-import ThemeColor from "../ThemeChanger/index.js";
-import { Container, NavContainer, SearchDiv, Wrapper } from "./index.styles";
+import ButtonInfo from "../CreateAccount/index.js";
+
+import { IoMdNotificationsOutline } from "react-icons/io";
+import {
+  Container,
+  NavContainer,
+  SearchDiv,
+  Wrapper,
+  Div,
+  Notification,
+} from "./index.styles";
 
 class Navbar extends React.Component {
   render() {
@@ -13,8 +21,10 @@ class Navbar extends React.Component {
             <Searchbox />
           </SearchDiv>
           <Wrapper>
-            <NewAccountInfo />
-            <ThemeColor handleTheme={this.props.handleTheme} />
+            <ButtonInfo Info="Create a new account" />
+            <Div>
+              <Notification />
+            </Div>
           </Wrapper>
         </NavContainer>
       </Container>

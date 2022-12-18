@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  margin: 1.2rem 0;
+
+  width: 100%;
+`;
 export const Wrapper = styled.div`
-  width: 90%;
+  width: 100%;
+
+  margin-inline: auto;
   font-family: Arial, Helvetica, sans-serif;
 
-  margin: 1rem auto;
   color: rgba(255, 255, 255, 0.8);
   h2 {
     width: fit-content;

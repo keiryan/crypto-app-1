@@ -16,6 +16,12 @@ import {
 } from "./charts.styles.js";
 
 class CoinChart extends React.Component {
+  state = {
+    selectedType: "custom",
+  };
+  handleType = (item) => {
+    this.setState({ selectedType: item.id });
+  };
   render() {
     return (
       <Container>
@@ -27,13 +33,21 @@ class CoinChart extends React.Component {
                 coinList={this.props.coinList}
                 alert={this.props.alert}
                 alert2={this.props.alert2}
+                handleType={this.handleType}
               />
             </CoinInfoDiv>
             <Div>
               {this.props.coinValue?.prices && (
                 <LineGraph
-                  data={this.props.coinValue.prices}
-                  volume={this.props.coinValue.total_volumes}
+                  data={
+                    this.state.selectedType === "volume"
+                      ? this.props.coinValue.total_volumes
+                      : this.props.coinValue.prices
+                  }
+                  selectedType={this.state.selectedType}
+                  // data={this.props.coinValue.prices}
+                  // volume={this.props.coinValue[this.props.selectedLine]}
+                  // volume={this.props.coinValue.total_volumes}
                 />
               )}
             </Div>

@@ -11,3 +11,14 @@ export function PageHeader() {
     </Container>
   );
 }
+
+export default function PortfolioHeader() {
+  return (
+    <Container>
+      <Wrapper>
+        <h2>Portfolio Mangement</h2>
+        <p>Learn about portfolio and investment summary</p>
+      </Wrapper>
+    </Container>
+  );
+}

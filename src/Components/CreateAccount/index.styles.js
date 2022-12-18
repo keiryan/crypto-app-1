@@ -10,6 +10,7 @@ export const Container = styled.div`
 `;
 export const PTag = styled.p`
   padding: 13px 20px;
+  font-size: 0.9rem;
   border-radius: 8px;
   color: rgba(255, 255, 255, 1);
   font-family: Arial, Helvetica, sans-serif;
