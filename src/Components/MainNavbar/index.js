@@ -8,6 +8,7 @@ import { VscAccount } from "react-icons/vsc";
 import { CgTranscript } from "react-icons/cg";
 import { BsStar } from "react-icons/bs";
 import { IoSettingsOutline } from "react-icons/io5";
+
 import {
   Container,
   Div,
@@ -21,10 +22,18 @@ import {
   StyleTransaction,
   StylePortfolio,
   StyleSetting,
+  StyledLink,
 } from "./index.styles";
 
 class MainNavbar extends React.Component {
+  state = {
+    isActive: false,
+  };
+  handleIsActive = () => {
+    this.setState({ isActive: !this.state.isActive });
+  };
   render() {
+    // console.log("setting", this.state.isActive);
     return (
       <Container>
         <Div>
@@ -34,10 +43,12 @@ class MainNavbar extends React.Component {
           <Title>Your Logo</Title>
         </Div>
         <Div>
-          <StyleOverview>
-            <AiOutlineFundView />
-          </StyleOverview>
-          <Title>Overview</Title>
+          <StyledLink to={`/`}>
+            <StyleOverview>
+              <AiOutlineFundView />
+            </StyleOverview>
+            <Title>Overview</Title>
+          </StyledLink>
         </Div>
         <Div>
           <StyleWallet>
@@ -76,10 +87,12 @@ class MainNavbar extends React.Component {
           <Title>Portfolio</Title>
         </Div>
         <Div>
-          <StyleSetting>
-            <IoSettingsOutline />
-          </StyleSetting>
-          <Title>Setting</Title>
+          <StyledLink to={`/setting`} onClick={this.handleIsActive}>
+            <StyleSetting>
+              <IoSettingsOutline />
+            </StyleSetting>
+            <Title>Setting</Title>
+          </StyledLink>
         </Div>
       </Container>
     );

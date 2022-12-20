@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   Chart as ChartJS,
@@ -25,6 +25,10 @@ ChartJS.register(
   Filler
 );
 const LineGraph = (props) => {
+  const [selectedType, setSelectedType] = useState(props.selectedType);
+  useEffect(() => {
+    setSelectedType(props.selectedType);
+  }, [props.selectedType]);
   return (
     <Line
       data={{
@@ -37,13 +41,8 @@ const LineGraph = (props) => {
             borderColor: "green",
             pointRadius: 0,
             borderWidth: 1.2,
-            fill: false,
-          },
-          {
-            data: props.volume.map((item) => item[1] / 10000000),
-            borderColor: "lightblue",
-            borderWidth: 1.2,
-            pointRadius: 0,
+            fill: true,
+            backgroundColor: "#8e44ad",
           },
         ],
       }}

@@ -64,7 +64,6 @@ export const InnerDiv = styled.div`
   display: flex;
 `;
 export const StyledInput = styled.input`
-  /* border: solid blue; */
   padding: 3px 3px;
   width: 130px;
   margin-left: -0.3rem;
@@ -86,7 +85,7 @@ export const NestedTimeList = styled.div`
   position: absolute;
   top: 102%;
   left: 0%;
-  width: 108px;
+  width: 102px;
 
   ul {
     box-shadow: 0px 0px 1px 1px #2b2d42;
@@ -109,7 +108,8 @@ export const NestedDataList = styled.div`
   position: absolute;
   top: 102%;
   left: 1%;
-  width: 125px;
+  width: 106px;
+
   ul {
     box-shadow: 0px 0px 1px 1px #2b2d42;
   }

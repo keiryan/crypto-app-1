@@ -44,7 +44,9 @@ const PeriodSelect = (props) => {
   return (
     <ul>
       {props.periodInfo.map((item) => (
-        <li onClick={() => props.handleDuration(item)}>{item.period}</li>
+        <form>
+          <li onClick={() => props.handleDuration(item)}>{item.period}</li>
+        </form>
       ))}
     </ul>
   );
@@ -59,7 +61,7 @@ class DisplayChartNavbar extends React.Component {
     list: false,
     dataType: false,
     timeSelect: false,
-    coinList: this.props.coinList,
+    coinList: this.props.coinList.slice(0, 8),
     selectedTime: "",
     selectedType: "",
     selectedCoin: "",
@@ -74,35 +76,36 @@ class DisplayChartNavbar extends React.Component {
       { type: "Volume", id: "volume" },
       { type: "Custom", id: "custom" },
     ],
-    input: "",
   };
+
   handleDuration = (item) => {
     this.state.periodInfo.map((element) => {
       if (element.id === item.id) {
         this.props.alert(element.id);
-        this.setState({ selectedTime: element });
+        this.setState({ selectedTime: element, timeSelect: false });
       }
     });
   };
   handleType = (item) => {
-    this.state.coinInfo.map((element) => {
+    let type = this.state.coinInfo;
+    type.map((element) => {
       if (element.id === item.id) {
-        this.setState({ selectedType: element });
+        this.props.handleType(element);
+        this.setState({ selectedType: element, dataType: false });
       }
     });
   };
+
   handleCoin = (item) => {
-    this.state.coinList.map((element) => {
+    let list = this.state.coinList;
+    list.map((element) => {
       if (element.name === item.name) {
         this.props.alert2(element.name);
-        this.setState({ selectedCoin: element });
+        this.setState({ selectedCoin: element, list: false });
       }
     });
   };
-  handleFilter = (e) => {
-    this.setState({ input: e.target.value });
-  };
-  handleSame = (item) => {};
+
   handleList = () => {
     this.setState({
       list: !this.state.list,
@@ -110,7 +113,7 @@ class DisplayChartNavbar extends React.Component {
       dataType: false,
     });
   };
-  handleTimeSelect = () => {
+  handleTimeSelect = (props) => {
     this.setState({
       timeSelect: !this.state.timeSelect,
       list: false,
@@ -126,14 +129,6 @@ class DisplayChartNavbar extends React.Component {
   };
 
   render() {
-    // const inputValue = this.state.input;
-    // const lowerCase =
-    //   inputValue.split("")[0].toUpperCase() + inputValue.slice(1);
-    // const lowerCaseCoinList = this.state.coinList?.map((item) => item.name);
-    // const filterItem = lowerCaseCoinList.filter((element) =>
-    //   element.name.includes(lowerCase)
-    // );
-    const func = this.state.selectedTime;
     return (
       <Wrapper>
         <TableNavbar>
@@ -178,10 +173,10 @@ class DisplayChartNavbar extends React.Component {
           </Div>
           <TimeDiv>
             <NestedDiv onClick={this.handleTimeSelect}>
-              <Info onClick={() => this.props.alert(this.state.selectedTime)}>
+              <Info>
                 {this.state.selectedTime
                   ? this.state.selectedTime.period
-                  : "week"}
+                  : "1 Year"}
               </Info>
 
               <Styledarrow />
@@ -191,6 +186,7 @@ class DisplayChartNavbar extends React.Component {
                 <PeriodSelect
                   handleDuration={this.handleDuration}
                   periodInfo={this.state.periodInfo}
+                  handleSubmit={this.handleSubmit}
                 />
               )}
             </NestedTimeList>

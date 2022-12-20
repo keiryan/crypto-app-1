@@ -25,8 +25,8 @@ ChartJS.register(
 const Sparklines = (props) => {
   return (
     <Line
-      width={80}
-      height={13}
+      width={110}
+      height={25}
       data={{
         labels: new Array(props.coinData?.length).fill(""),
         datasets: [

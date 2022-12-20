@@ -8,7 +8,11 @@ import { VscAccount } from "react-icons/vsc";
 import { CgTranscript } from "react-icons/cg";
 import { BsStar } from "react-icons/bs";
 import { IoSettingsOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 export const Container = styled.div`
   width: 100%;
   padding-top: 1rem;
@@ -17,10 +21,6 @@ export const Div = styled.div`
   text-align: center;
   margin: 0rem 0 1.6rem 0;
   cursor: pointer;
-  /* border: 1px solid white; */
-  &:hover {
-    color: green;
-  }
 `;
 export const StyleMarket = styled(BsFillBarChartFill)`
   color: white;
@@ -32,7 +32,6 @@ export const StyleMarket = styled(BsFillBarChartFill)`
 `;
 export const StyleLogo = styled(SiRedux)`
   color: white;
-
   font-size: 27px;
   &:hover {
     color: green;
