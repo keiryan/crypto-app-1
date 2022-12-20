@@ -33,7 +33,6 @@ class MainNavbar extends React.Component {
     this.setState({ isActive: !this.state.isActive });
   };
   render() {
-    // console.log("setting", this.state.isActive);
     return (
       <Container>
         <Div>

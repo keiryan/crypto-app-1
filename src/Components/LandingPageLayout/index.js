@@ -63,21 +63,23 @@ export default function LandingPageLayout({
               <TableRow>
                 <TableIndex>#</TableIndex>
                 <TableCoinInfo>Name</TableCoinInfo>
-                <TableHeader>
+                <TableData>
                   Price <StyledArrowDown />
-                </TableHeader>
-                <TableHeader>
+                </TableData>
+                <TableData>
                   1h% <StyledArrowDown />
-                </TableHeader>
-                <TableHeader>
+                </TableData>
+                <TableData>
                   24h% <StyledArrowDown />
-                </TableHeader>
-                <TableHeader>
+                </TableData>
+                <TableData>
                   7d% <StyledArrowDown />
-                </TableHeader>
-                <TableHeaders>24h Volume/Market Cap</TableHeaders>
-                <TableHeaders>Circulating/Total Supply</TableHeaders>
-                <TableHeader>Last 7d</TableHeader>
+                </TableData>
+                <TableProgressChart>24h Volume/Market Cap</TableProgressChart>
+                <TableProgressChart>
+                  Circulating/Total Supply
+                </TableProgressChart>
+                <SparklineDiv>Last 7d</SparklineDiv>
               </TableRow>
 
               <InfiniteScroll
@@ -214,13 +216,10 @@ export default function LandingPageLayout({
                           ></DivProgressBar>
                         </MainProgressBar>
                       </TableProgressChart>
-                      <TableData>
-                        <SparklineDiv>
-                          <Sparklines
-                            coinData={element.sparkline_in_7d.price}
-                          />
-                        </SparklineDiv>
-                      </TableData>
+
+                      <SparklineDiv>
+                        <Sparklines coinData={element.sparkline_in_7d.price} />
+                      </SparklineDiv>
                     </TableRow>
                   );
                 })}

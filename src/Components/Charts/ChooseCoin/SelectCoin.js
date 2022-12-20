@@ -79,7 +79,7 @@ class DisplayChartNavbar extends React.Component {
   };
 
   handleDuration = (item) => {
-    this.state.periodInfo.map((element) => {
+    this.state.periodInfo.forEach((element) => {
       if (element.id === item.id) {
         this.props.alert(element.id);
         this.setState({ selectedTime: element, timeSelect: false });
@@ -88,7 +88,7 @@ class DisplayChartNavbar extends React.Component {
   };
   handleType = (item) => {
     let type = this.state.coinInfo;
-    type.map((element) => {
+    type.forEach((element) => {
       if (element.id === item.id) {
         this.props.handleType(element);
         this.setState({ selectedType: element, dataType: false });
@@ -98,7 +98,7 @@ class DisplayChartNavbar extends React.Component {
 
   handleCoin = (item) => {
     let list = this.state.coinList;
-    list.map((element) => {
+    list.forEach((element) => {
       if (element.name === item.name) {
         this.props.alert2(element.name);
         this.setState({ selectedCoin: element, list: false });

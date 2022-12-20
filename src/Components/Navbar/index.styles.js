@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import { IoMdNotificationsOutline } from "react-icons/io";
 
 export const Container = styled.div`
-  width: 90%;
+  width: 100%;
   margin-inline: auto;
-  margin-top: 0.5rem;
-  /* border: solid blue; */
+  margin-top: 1rem;
 `;
 export const LinkStyled = styled(Link)`
   text-decoration: none;
@@ -18,7 +17,7 @@ export const NavContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-inline: auto;
-  width: 100%;
+  width: 90%;
 `;
 
 export const SearchDiv = styled.div`
@@ -28,12 +27,17 @@ export const SearchDiv = styled.div`
   width: 75%;
   box-shadow: 0px 0px 0.5px 0.5px #fafbfb;
   justify-content: space-between;
+  @media only screen and (min-width: 1400px) {
+    width: 82%;
+  }
 `;
 export const Wrapper = styled.div`
   display: flex;
   width: 22%;
-
   justify-content: space-between;
+  @media only screen and (min-width: 1400px) {
+    width: 13%;
+  }
 `;
 export const Notification = styled(IoMdNotificationsOutline)`
   font-size: 1.8rem;

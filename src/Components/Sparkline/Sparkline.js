@@ -26,7 +26,7 @@ const Sparklines = (props) => {
   return (
     <Line
       width={110}
-      height={25}
+      height={28}
       data={{
         labels: new Array(props.coinData?.length).fill(""),
         datasets: [

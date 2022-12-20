@@ -45,9 +45,6 @@ class CoinChart extends React.Component {
                       : this.props.coinValue.prices
                   }
                   selectedType={this.state.selectedType}
-                  // data={this.props.coinValue.prices}
-                  // volume={this.props.coinValue[this.props.selectedLine]}
-                  // volume={this.props.coinValue.total_volumes}
                 />
               )}
             </Div>

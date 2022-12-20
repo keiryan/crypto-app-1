@@ -15,18 +15,7 @@ export const TableHeaders = styled.th`
   padding: 1rem 0.5rem 1rem 0.5rem;
   text-align: center;
   display: flex;
-
   justify-content: space-between;
-  text-shadow: 0.5px 0.5px 0px rgba(255, 255, 255, 0.2);
-`;
-export const TableHeader = styled.th`
-  width: 9%;
-
-  font-size: 0.9rem;
-  padding: 1rem 0.5rem 1rem 0.5rem;
-  text-align: center;
-  display: flex;
-  justify-content: center;
   text-shadow: 0.5px 0.5px 0px rgba(255, 255, 255, 0.2);
 `;
 export const TableRow = styled.tr`
@@ -46,7 +35,8 @@ export const Table = styled.table`
   box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.5);
 `;
 export const TableData = styled.td`
-  padding: 15px 18px;
+  padding: 12px 10px;
+  display: flex;
   font-size: 0.9rem;
   width: 9%;
   align-items: center;
@@ -64,10 +54,10 @@ export const TableIndex = styled.td`
   align-items: center;
 `;
 export const TableProgressChart = styled.td`
-  padding: 4px 10px;
+  padding: 14px 10px;
   width: 15%;
-
   margin-left: 0.7rem;
+  text-align: center;
 `;
 export const CoinImage = styled.img`
   width: 30px;
@@ -95,11 +85,14 @@ export const MainProgressBar = styled.div`
   border-radius: 5px;
 `;
 export const SparklineDiv = styled.div`
-  width: 100px;
-
-  height: 40px;
+  width: 9%;
+  height: 50px;
   margin-inline: auto;
-  padding-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 0.7rem;
+  text-align: center;
 `;
 
 export const CoinInfo = styled.div`
