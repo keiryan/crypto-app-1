@@ -1,15 +1,43 @@
-import React from "react";
-import { Container, Input } from "./index.styles.js";
+import React, { useState, useEffect } from "react";
+import { Container, Input, UnorderList, OrderList } from "./index.styles.js";
 
-class Searchbox extends React.Component {
-  render() {
-    return (
+export default function Searchbox(props) {
+  const [value, setValue] = useState("");
+  const [coinList, setCoinList] = useState([]);
+  useEffect(() => {
+    setCoinList(props.coinList);
+  }, [props.coinList]);
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setValue("");
+  };
+  const coinNameList = coinList?.map((item) => item.name);
+  const filterItem = coinNameList?.filter((item) =>
+    item.toLowerCase().includes(value.toLowerCase())
+  );
+
+  return (
+    <>
       <Container>
-        <form>
-          <Input placeholder="Search..." />
+        <form onSubmit={handleSubmit}>
+          <Input
+            value={value}
+            onChange={handleChange}
+            placeholder="Search..."
+          />
         </form>
+        <UnorderList>
+          {filterItem?.map((item) => {
+            if (value === "") return null;
+            return <OrderList key={item}>{item}</OrderList>;
+          })}
+        </UnorderList>
+        {}
       </Container>
-    );
-  }
+    </>
+  );
 }
-export default Searchbox;

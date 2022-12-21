@@ -18,7 +18,7 @@ class Navbar extends React.Component {
       <Container>
         <NavContainer>
           <SearchDiv>
-            <Searchbox />
+            <Searchbox coinList={this.props.coinList} />
           </SearchDiv>
           <Wrapper>
             <ButtonInfo Info="Create a new account" />

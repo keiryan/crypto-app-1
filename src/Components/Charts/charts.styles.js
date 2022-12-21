@@ -18,9 +18,9 @@ export const MainContainer = styled.div`
 export const Div = styled.div`
   display: flex;
   justify-content: left;
-  padding-left: 4rem;
-  max-height: 370px;
+
   width: 100%;
+  margin-inline: auto;
 `;
 
 export const CoinInfoDiv = styled.div`
@@ -31,7 +31,6 @@ export const ChartContainer = styled.div`
   box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.5);
   padding: 1rem;
   width: 67%;
-  /* max-height: 450px; */
 `;
 export const IndicatorContainer = styled.div`
   box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.5);
@@ -46,7 +45,6 @@ export const PieInfo = styled.p`
   font-size: 1.1rem;
 `;
 export const GreedFigure = styled.div`
-  /* border: solid white; */
   width: fit-content;
   position: absolute;
   top: 50%;
@@ -60,7 +58,6 @@ export const GreedFigure = styled.div`
 `;
 export const Summary = styled.div`
   display: flex;
-  /* border: white solid; */
   justify-content: space-between;
   padding: 1rem;
   position: absolute;
@@ -69,7 +66,6 @@ export const Summary = styled.div`
   left: 50%;
   transform: translate(-50%, 0%);
   li {
-    /* border: solid white; */
     padding: 3px;
     list-style: none;
     font-size: 14px;

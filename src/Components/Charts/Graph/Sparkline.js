@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 
 import {
   Chart as ChartJS,
@@ -24,58 +25,65 @@ ChartJS.register(
   Legend,
   Filler
 );
+const Div = styled.div`
+  width: 100%;
+
+  height: 100%;
+`;
 const LineGraph = (props) => {
   const [selectedType, setSelectedType] = useState(props.selectedType);
   useEffect(() => {
     setSelectedType(props.selectedType);
   }, [props.selectedType]);
   return (
-    <Line
-      data={{
-        labels: props.data.map((item) => {
-          return moment.unix(item[0] / 1000).format("MM-DD-YY");
-        }),
-        datasets: [
-          {
-            data: props.data.map((item) => item[1]),
-            borderColor: "green",
-            pointRadius: 0,
-            borderWidth: 1.2,
-            fill: true,
-            backgroundColor: "#8e44ad",
-          },
-        ],
-      }}
-      options={{
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false,
-          },
-          title: {
-            display: false,
-            text: "Chart.js Line Chart",
-          },
-        },
-        scales: {
-          y: {
-            display: true,
-            grid: {
-              display: true,
-              drawBorder: true,
+    <Div>
+      <Line
+        data={{
+          labels: props.data.map((item) => {
+            return moment.unix(item[0] / 1000).format("MM-DD-YY");
+          }),
+          datasets: [
+            {
+              data: props.data.map((item) => item[1]),
+              borderColor: "green",
+              pointRadius: 0,
+              borderWidth: 1.2,
+              fill: true,
+              backgroundColor: "#8e44ad",
+            },
+          ],
+        }}
+        options={{
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false,
+            },
+            title: {
+              display: false,
+              text: "Chart.js Line Chart",
             },
           },
-          x: {
-            display: true,
-            grid: {
+          scales: {
+            y: {
               display: true,
-              drawBorder: true,
+              grid: {
+                display: true,
+                drawBorder: true,
+              },
+            },
+            x: {
+              display: true,
+              grid: {
+                display: true,
+                drawBorder: true,
+              },
             },
           },
-        },
-        tension: 0.5,
-      }}
-    />
+          tension: 0.5,
+        }}
+      />
+    </Div>
   );
 };
 

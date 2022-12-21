@@ -7,7 +7,7 @@ class LandingPage extends React.Component {
     coinLength: 12,
     coinData: [],
     coinPriceVolume: null,
-    coinList: null,
+    // coinList: null,
     period: 365,
     greedValue: null,
     selectedCoin: "bitcoin",
@@ -31,10 +31,9 @@ class LandingPage extends React.Component {
         const response = await axios(
           `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${this.state.coinLength}&page=${this.state.page}&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
         );
-        // console.log("response data", response.data?.length);
         this.setState({
           coinData: [...this.state.coinData, ...response.data],
-          // coinList: [...this.state.coinList, ...response.data],
+
           coinLength: 10,
         });
       } catch (err) {
@@ -97,7 +96,6 @@ class LandingPage extends React.Component {
       <div>
         {this.state.coinData.length ? (
           <LandingPageLayout
-            func={this.setDays}
             items={this.state.coinData}
             coinValue={this.state.coinPriceVolume}
             greedValue={this.state.greedValue}
