@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { FaAngleUp } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export const TableDiv = styled.div`
   color: "#fafbfb";
@@ -101,11 +102,18 @@ export const CoinInfo = styled.div`
   font-size: 0.9rem;
   cursor: pointer;
 `;
+export const StyledLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+`;
+
 export const Icon = styled.div``;
 export const WrapperContainer = styled.div`
   margin-bottom: 2.5rem;
 `;
-export const MainWrapper = styled.div``;
+export const MainWrapper = styled.div`
+  background-color: #191b1f;
+`;
 export const StyledArrowUp = styled(FaAngleUp)`
   color: rgba(255, 255, 255, 0.9);
   font-size: 0.9rem;

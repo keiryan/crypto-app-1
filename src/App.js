@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { CoinPage, LandingPage, PortfolioPage, Setting } from "./Pages";
 import { Container, Wrapper, Nav } from "./App.styles.js";
 import Navbar from "./Components/Navbar/index";
@@ -14,49 +14,44 @@ const theme = {
     TextColor: "",
   },
 };
-class App extends React.Component {
-  state = {
-    coinList: [],
-    isError: false,
-  };
+function App() {
+  const [coinList, setCoinList] = useState([]);
+  const [isError, setIsError] = useState(false);
 
-  getCoinData = async () => {
+  useEffect(() => {
+    getCoinData();
+  }, []);
+  const getCoinData = async () => {
     try {
       const response = await axios(
         `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=150&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d`
       );
-      this.setState({
-        coinList: response.data,
-      });
+      setCoinList(response.data);
     } catch (err) {
-      this.setState({ isError: true });
+      setIsError(true);
     }
   };
-  componentDidMount() {
-    this.getCoinData();
-  }
-  render() {
-    return (
-      <ThemeProvider theme={theme}>
-        <Router>
-          <Container themeColor={this.state.themeColor}>
-            <Nav>
-              <MainNavbar />
-            </Nav>
-            <GlobalStyle />
-            <Wrapper>
-              <Navbar coinList={this.state.coinList} />
-              <Switch>
-                <Route path="/" exact component={LandingPage} />
-                <Route path="/PortfolioPage" exact component={PortfolioPage} />
-                <Route path="/CoinPage" exact component={CoinPage} />
-                <Route path="/Setting" exact component={Setting} />
-              </Switch>
-            </Wrapper>
-          </Container>
-        </Router>
-      </ThemeProvider>
-    );
-  }
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Router>
+        <Container>
+          <Nav>
+            <MainNavbar />
+          </Nav>
+          <GlobalStyle />
+          <Wrapper>
+            <Navbar coinList={coinList} />
+            <Switch>
+              <Route path="/" exact component={LandingPage} />
+              <Route path="/PortfolioPage" exact component={PortfolioPage} />
+              <Route path="/CoinPage" exact component={CoinPage} />
+              <Route path="/Setting" exact component={Setting} />
+            </Switch>
+          </Wrapper>
+        </Container>
+      </Router>
+    </ThemeProvider>
+  );
 }
 export default App;

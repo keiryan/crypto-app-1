@@ -14,4 +14,7 @@ export const PTag = styled.p`
   border-radius: 8px;
   color: rgba(255, 255, 255, 1);
   font-family: Arial, Helvetica, sans-serif;
+  @media only screen and (max-width: 1200px) {
+    padding: 13px 10px;
+  }
 `;
