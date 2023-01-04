@@ -7,10 +7,6 @@ import { BsPlus } from "react-icons/bs";
 export const Container = styled.div`
   width: 100%;
   padding: 1rem 0;
-
-  @media only screen and (min-width: 1400px) {
-    height: 100vh;
-  }
 `;
 export const MainDiv = styled.div`
   width: 90%;
@@ -20,9 +16,6 @@ export const MainDiv = styled.div`
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.6);
   padding: 1rem 2rem;
   margin: auto;
-  /* @media only screen and (min-width: 1400px) {
-    width: 80%;
-  } */
 `;
 
 export const Header = styled.header`
@@ -57,12 +50,12 @@ export const CoinMarketDiv = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 0.4rem;
+  margin-top: 0.5rem;
 `;
 export const ListDiv = styled.div`
   p {
     font-size: 13px;
     display: flex;
-    /* align-items: center; */
   }
 `;
 export const Summary = styled.p`
@@ -87,6 +80,7 @@ export const Wrapper = styled.div`
     display: flex;
     align-items: center;
     padding: 2px 0;
+
     color: rgba(255, 255, 255, 0.7);
   }
 `;
@@ -105,7 +99,8 @@ export const StyleArrowDown = styled(IoIosArrowDown)`
 `;
 
 export const OfficialLink = styled.a`
-  color: white;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
   font-size: 13px;
   padding-left: 3px;
   cursor: pointer;
@@ -131,9 +126,9 @@ export const Span = styled.span`
 
 export const StyleStack = styled(ImStack)`
   color: white;
-  font-size: 2rem;
+  font-size: 2.5rem;
   text-align: center;
-  margin-top: 3px;
+  margin-top: 10px;
 `;
 export const StylePlusSquare = styled(BsPlus)`
   color: white;
@@ -204,7 +199,7 @@ export const CoinLogo = styled.div`
   width: 90px;
   border: 0.5px solid white;
   height: 90px;
-  margin: 10px 0;
+  margin: 1.5rem 0 10px 0;
   img {
     width: 100%;
     height: 100%;
@@ -225,5 +220,20 @@ export const ProgressDiv = styled.div`
   margin-bottom: 0.6rem;
 `;
 export const NavigationLink = styled.a`
-  color: white;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
 `;
+export const Wrappers = styled.div`
+  display: flex;
+  width: 70%;
+  text-align: left;
+  color: white;
+  justify-content: space-between;
+  margin: 1rem;
+  p {
+    font-size: 0.9rem;
+    padding: 0.18rem 0.5rem;
+  }
+`;
+export const AtlData = styled.div``;
+export const AthData = styled.div``;

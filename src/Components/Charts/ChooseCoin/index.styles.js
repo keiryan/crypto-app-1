@@ -15,7 +15,7 @@ export const CoinSelection = styled.div`
   flex-direction: row;
   font-family: Helvetica, sans-serif;
   align-items: center;
-
+  border: 0.7px solid white;
   padding: 12px;
   border-radius: 5px;
   box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.5);

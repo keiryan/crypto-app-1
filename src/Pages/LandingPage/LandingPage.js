@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import LandingPageLayout from "../../Components/LandingPageLayout";
+import { LandingPageLayout } from "../../Components/LandingPageLayout";
 import axios from "axios";
 
 function LandingPage() {

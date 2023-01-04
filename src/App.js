@@ -45,7 +45,7 @@ function App() {
             <Switch>
               <Route path="/" exact component={LandingPage} />
               <Route path="/PortfolioPage" exact component={PortfolioPage} />
-              <Route path="/CoinPage" exact component={CoinPage} />
+              <Route path="/CoinPage/:coinname" exact component={CoinPage} />
               <Route path="/Setting" exact component={Setting} />
             </Switch>
           </Wrapper>

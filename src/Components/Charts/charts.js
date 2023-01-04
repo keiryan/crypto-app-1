@@ -28,14 +28,7 @@ function CoinChart(props) {
       <MainContainer>
         <ChartContainer>
           <CoinInfoDiv>
-            <DisplayChartNavbar
-              {...props}
-              // func={this.props.func}
-              // coinList={this.props.coinList}
-              // alert={this.props.alert}
-              // alert2={this.props.alert2}
-              handleType={handleType}
-            />
+            <DisplayChartNavbar {...props} handleType={handleType} />
           </CoinInfoDiv>
           <Div>
             {props.coinValue?.prices && (

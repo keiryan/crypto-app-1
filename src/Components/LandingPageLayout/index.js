@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import CoinChart from "../Charts/charts.js";
+import { connect } from "react-redux";
+import { getCoinName } from "../../services/action/coinNameAction";
 import { PageHeader } from "../DisplayHeader/index.js";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Sparklines from "../Sparkline/Sparkline.js";
@@ -29,7 +31,7 @@ import {
   Loading,
 } from "./index.styles.js";
 
-const LandingPageLayout = ({
+export const LandingPageLayout = ({
   items,
   coinValue,
   greedValue,
@@ -38,6 +40,13 @@ const LandingPageLayout = ({
   coinPageData,
   ...props
 }) => {
+  const [clickedCoin, setClickedCoin] = useState("");
+
+  const handleSelectedCoin = (item) => {
+    setClickedCoin(item.name);
+    props.selectedCoin(clickedCoin);
+  };
+
   return (
     <>
       <MainWrapper>
@@ -85,13 +94,15 @@ const LandingPageLayout = ({
                 {items.map((element, index) => {
                   return (
                     <TableRow>
-                      <TableIndex>{index + 1}</TableIndex>
+                      <TableIndex>{index + 1} </TableIndex>
                       <TableCoinInfo>
                         <StyledLink
-                          to={"/coinpage"}
+                          to={`/coinpage/${element.id}`}
                           coinPageData={coinPageData}
                         >
-                          <CoinInfo>
+                          <CoinInfo
+                            onClick={() => handleSelectedCoin({ element })}
+                          >
                             <CoinImage src={element.image} /> {element.name} (
                             {element.symbol.toUpperCase()})
                           </CoinInfo>
@@ -231,4 +242,10 @@ const LandingPageLayout = ({
   );
 };
 
-export default LandingPageLayout;
+const mapStateToProps = (state) => ({
+  getName: state.selectedCoin,
+});
+const mapDispatchToProps = {
+  selectedCoin: getCoinName,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPageLayout);

@@ -75,7 +75,6 @@ function DisplayChartNavbar(props) {
     { type: "Volume", id: "volume" },
     { type: "Custom", id: "custom" },
   ]);
-  console.log("selected coin", selectedCoin);
   const handleDuration = (item) => {
     periodInfo.forEach((element, props) => {
       if (element.id === item.id) {
