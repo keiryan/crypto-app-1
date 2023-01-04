@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Div } from "./button.styles";
 import ButtonInfo from "../../CreateAccount";
-export default function SubmitDetailsButton() {
+const SubmitDetailsButton = () => {
   return (
     <Container>
       <Div>
@@ -13,4 +13,6 @@ export default function SubmitDetailsButton() {
       </Div>
     </Container>
   );
-}
+};
+
+export default SubmitDetailsButton;

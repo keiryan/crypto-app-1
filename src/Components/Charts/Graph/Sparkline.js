@@ -11,6 +11,7 @@ import {
   Tooltip,
   Legend,
   Filler,
+  registerables,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import moment from "moment";
@@ -47,9 +48,9 @@ const LineGraph = (props) => {
               data: props.data.map((item) => item[1]),
               borderColor: "green",
               pointRadius: 0,
-              borderWidth: 1.2,
-              fill: true,
-              backgroundColor: "#8e44ad",
+              borderWidth: 2,
+              fill: false,
+              backgroundColor: "#303234",
             },
           ],
         }}

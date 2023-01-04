@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsFillBarChartFill } from "react-icons/bs";
 import { HiOutlineNewspaper } from "react-icons/hi";
 import { FaWallet } from "react-icons/fa";
@@ -25,76 +25,73 @@ import {
   StyledLink,
 } from "./index.styles";
 
-class MainNavbar extends React.Component {
-  state = {
-    isActive: false,
+const MainNavbar = () => {
+  const [isActive, setisActive] = useState(false);
+  const handleIsActive = () => {
+    setisActive(!isActive);
   };
-  handleIsActive = () => {
-    this.setState({ isActive: !this.state.isActive });
-  };
-  render() {
-    return (
-      <Container>
-        <Div>
-          <StyleLogo>
-            <SiRedux />
-          </StyleLogo>
-          <Title>Your Logo</Title>
-        </Div>
-        <Div>
-          <StyledLink to={`/`}>
-            <StyleOverview>
-              <AiOutlineFundView />
-            </StyleOverview>
-            <Title>Overview</Title>
-          </StyledLink>
-        </Div>
-        <Div>
-          <StyleWallet>
-            <FaWallet />
-          </StyleWallet>
-          <Title>Wallet</Title>
-        </Div>
-        <Div>
-          <StyleNews>
-            <HiOutlineNewspaper />
-          </StyleNews>
-          <Title>News</Title>
-        </Div>
-        <Div>
-          <StyleMarket>
-            <BsFillBarChartFill />
-          </StyleMarket>
-          <Title>Market</Title>
-        </Div>
-        <Div>
-          <StyleAccount>
-            <VscAccount />
-          </StyleAccount>
-          <Title>Account</Title>
-        </Div>
-        <Div>
-          <StyleTransaction>
-            <CgTranscript />
-          </StyleTransaction>
-          <Title>Transactions</Title>
-        </Div>
-        <Div>
-          <StylePortfolio>
-            <BsStar />
-          </StylePortfolio>
-          <Title>Portfolio</Title>
-        </Div>
-        <Div>
-          <StyledLink to={`/setting`} onClick={this.handleIsActive}>
-            <StyleSetting>
-              <IoSettingsOutline />
-            </StyleSetting>
-            <Title>Setting</Title>
-          </StyledLink>
-        </Div>
-      </Container>
-    );
-  }
-}
+
+  return (
+    <Container>
+      <Div>
+        <StyleLogo>
+          <SiRedux />
+        </StyleLogo>
+        <Title>Your Logo</Title>
+      </Div>
+      <Div>
+        <StyledLink to={`/`}>
+          <StyleOverview>
+            <AiOutlineFundView />
+          </StyleOverview>
+          <Title>Overview</Title>
+        </StyledLink>
+      </Div>
+      <Div>
+        <StyleWallet>
+          <FaWallet />
+        </StyleWallet>
+        <Title>Wallet</Title>
+      </Div>
+      <Div>
+        <StyleNews>
+          <HiOutlineNewspaper />
+        </StyleNews>
+        <Title>News</Title>
+      </Div>
+      <Div>
+        <StyleMarket>
+          <BsFillBarChartFill />
+        </StyleMarket>
+        <Title>Market</Title>
+      </Div>
+      <Div>
+        <StyleAccount>
+          <VscAccount />
+        </StyleAccount>
+        <Title>Account</Title>
+      </Div>
+      <Div>
+        <StyleTransaction>
+          <CgTranscript />
+        </StyleTransaction>
+        <Title>Transactions</Title>
+      </Div>
+      <Div>
+        <StylePortfolio>
+          <BsStar />
+        </StylePortfolio>
+        <Title>Portfolio</Title>
+      </Div>
+      <Div>
+        <StyledLink to={`/setting`} onClick={handleIsActive}>
+          <StyleSetting>
+            <IoSettingsOutline />
+          </StyleSetting>
+          <Title>Setting</Title>
+        </StyledLink>
+      </Div>
+    </Container>
+  );
+};
 export default MainNavbar;

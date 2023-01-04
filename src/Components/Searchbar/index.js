@@ -7,6 +7,7 @@ export default function Searchbox(props) {
   useEffect(() => {
     setCoinList(props.coinList);
   }, [props.coinList]);
+
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -16,9 +17,9 @@ export default function Searchbox(props) {
     setValue("");
   };
   const coinNameList = coinList?.map((item) => item.name);
-  const filterItem = coinNameList?.filter((item) =>
-    item.toLowerCase().includes(value.toLowerCase())
-  );
+  const filterItem = coinNameList
+    ?.filter((item) => item.toLowerCase().includes(value.toLowerCase()))
+    .slice(0, 10);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import LineGraph from "./Graph/Sparkline.js";
 import { PieGraph } from "./Graph/Doughnut.js";
@@ -13,48 +13,52 @@ import {
   PieInfo,
   Summary,
   GreedFigure,
+  Wrapper,
+  Canvas,
 } from "./charts.styles.js";
 
-class CoinChart extends React.Component {
-  state = {
-    selectedType: "custom",
+function CoinChart(props) {
+  const [selectedType, setSelectedType] = useState("custom");
+
+  const handleType = (item) => {
+    setSelectedType(item.id);
   };
-  handleType = (item) => {
-    this.setState({ selectedType: item.id });
-  };
-  render() {
-    return (
-      <Container>
-        <MainContainer>
-          <ChartContainer>
-            <CoinInfoDiv>
-              <DisplayChartNavbar
-                func={this.props.func}
-                coinList={this.props.coinList}
-                alert={this.props.alert}
-                alert2={this.props.alert2}
-                handleType={this.handleType}
+  return (
+    <Container>
+      <MainContainer>
+        <ChartContainer>
+          <CoinInfoDiv>
+            <DisplayChartNavbar
+              {...props}
+              // func={this.props.func}
+              // coinList={this.props.coinList}
+              // alert={this.props.alert}
+              // alert2={this.props.alert2}
+              handleType={handleType}
+            />
+          </CoinInfoDiv>
+          <Div>
+            {props.coinValue?.prices && (
+              <LineGraph
+                data={
+                  selectedType === "volume"
+                    ? props.coinValue.total_volumes
+                    : props.coinValue.prices
+                }
+                selectedType={selectedType}
               />
-            </CoinInfoDiv>
-            <Div>
-              {this.props.coinValue?.prices && (
-                <LineGraph
-                  data={
-                    this.state.selectedType === "volume"
-                      ? this.props.coinValue.total_volumes
-                      : this.props.coinValue.prices
-                  }
-                  selectedType={this.state.selectedType}
-                />
-              )}
-            </Div>
-          </ChartContainer>
-          <IndicatorContainer>
-            <PieInfo>Fear greed indicator</PieInfo>
-            {this.props.greedValue?.data && (
-              <PieGraph greedValue={this.props.greedValue.data} />
             )}
+          </Div>
+        </ChartContainer>
+        <IndicatorContainer>
+          <PieInfo>Fear greed indicator</PieInfo>
+          <Wrapper>
             <GreedFigure>
+              <Canvas>
+                {props.greedValue?.data && (
+                  <PieGraph greedValue={props.greedValue.data} />
+                )}
+              </Canvas>
               <h2>6,04</h2>
             </GreedFigure>
             <Summary>
@@ -69,10 +73,10 @@ class CoinChart extends React.Component {
                 <li>200</li>
               </ul>
             </Summary>
-          </IndicatorContainer>
-        </MainContainer>
-      </Container>
-    );
-  }
+          </Wrapper>
+        </IndicatorContainer>
+      </MainContainer>
+    </Container>
+  );
 }
 export default CoinChart;

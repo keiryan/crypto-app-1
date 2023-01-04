@@ -12,23 +12,21 @@ import {
   Notification,
 } from "./index.styles";
 
-class Navbar extends React.Component {
-  render() {
-    return (
-      <Container>
-        <NavContainer>
-          <SearchDiv>
-            <Searchbox coinList={this.props.coinList} />
-          </SearchDiv>
-          <Wrapper>
-            <ButtonInfo Info="Create a new account" />
-            <Div>
-              <Notification />
-            </Div>
-          </Wrapper>
-        </NavContainer>
-      </Container>
-    );
-  }
-}
+const Navbar = ({ coinList }) => {
+  return (
+    <Container>
+      <NavContainer>
+        <SearchDiv>
+          <Searchbox coinList={coinList} />
+        </SearchDiv>
+        <Wrapper>
+          <ButtonInfo Info="Create a new account" />
+          <Div>
+            <Notification />
+          </Div>
+        </Wrapper>
+      </NavContainer>
+    </Container>
+  );
+};
 export default Navbar;

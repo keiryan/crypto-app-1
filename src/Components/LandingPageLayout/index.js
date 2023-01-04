@@ -3,14 +3,12 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import CoinChart from "../Charts/charts.js";
 import { PageHeader } from "../DisplayHeader/index.js";
 import InfiniteScroll from "react-infinite-scroll-component";
-
 import Sparklines from "../Sparkline/Sparkline.js";
 
 import {
   TableDiv,
   Table,
   TableRow,
-  TableHeader,
   TableData,
   CoinImage,
   TableProgressChart,
@@ -25,25 +23,21 @@ import {
   StyledArrowDown,
   Figure,
   MainProgressBar,
-  TableHeaders,
+  StyledLink,
   TableIndex,
   TableCoinInfo,
   Loading,
 } from "./index.styles.js";
 
-export default function LandingPageLayout({
+const LandingPageLayout = ({
   items,
   coinValue,
   greedValue,
   coinList,
   coinDataLength,
-
+  coinPageData,
   ...props
-}) {
-  const [hasMore, setHasmore] = useState(props.coinLength);
-  useEffect(() => {
-    setHasmore(props.coinLength);
-  }, [props.coinLength]);
+}) => {
   return (
     <>
       <MainWrapper>
@@ -93,10 +87,15 @@ export default function LandingPageLayout({
                     <TableRow>
                       <TableIndex>{index + 1}</TableIndex>
                       <TableCoinInfo>
-                        <CoinInfo>
-                          <CoinImage src={element.image} /> {element.name} (
-                          {element.symbol.toUpperCase()})
-                        </CoinInfo>
+                        <StyledLink
+                          to={"/coinpage"}
+                          coinPageData={coinPageData}
+                        >
+                          <CoinInfo>
+                            <CoinImage src={element.image} /> {element.name} (
+                            {element.symbol.toUpperCase()})
+                          </CoinInfo>
+                        </StyledLink>
                       </TableCoinInfo>
                       <TableData>${element.current_price}</TableData>
                       <TableData>
@@ -230,4 +229,6 @@ export default function LandingPageLayout({
       </MainWrapper>
     </>
   );
-}
+};
+
+export default LandingPageLayout;

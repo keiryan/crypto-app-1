@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   Wrapper,
@@ -22,7 +22,7 @@ const NestedCoinList = (props) => {
     <div>
       <ul>
         <li>
-          <Input onChange={props.handleFilter} />
+          <Input />
         </li>
         {props.list.map((item) => (
           <li onClick={() => props.handleCoin(item)}>{item.name}</li>
@@ -56,144 +56,112 @@ const Input = () => {
   return <StyledInput placeholder="Search coin..." />;
 };
 
-class DisplayChartNavbar extends React.Component {
-  state = {
-    list: false,
-    dataType: false,
-    timeSelect: false,
-    coinList: this.props.coinList.slice(0, 8),
-    selectedTime: "",
-    selectedType: "",
-    selectedCoin: "",
-    periodInfo: [
-      { period: "1 day", id: 1 },
-      { period: "1 week", id: 7 },
-      { period: "1 month", id: 30 },
-      { period: "1 year", id: 365 },
-    ],
-    coinInfo: [
-      { type: "Price", id: "price" },
-      { type: "Volume", id: "volume" },
-      { type: "Custom", id: "custom" },
-    ],
-  };
-
-  handleDuration = (item) => {
-    this.state.periodInfo.forEach((element) => {
+function DisplayChartNavbar(props) {
+  const [list, setList] = useState(false);
+  const [dataType, setDataType] = useState(false);
+  const [timeSelect, setTimeSelect] = useState(false);
+  const [coinList, setCoinList] = useState(props.coinList.slice(0, 8));
+  const [selectedTime, setSelectedTime] = useState("");
+  const [selectedType, setSelectedType] = useState("");
+  const [selectedCoin, setSelectedCoin] = useState("");
+  const [periodInfo, setPeriodInfo] = useState([
+    { period: "1 day", id: 1 },
+    { period: "1 week", id: 7 },
+    { period: "1 month", id: 30 },
+    { period: "1 year", id: 365 },
+  ]);
+  const [coinInfo, setCoinInfo] = useState([
+    { type: "Price", id: "price" },
+    { type: "Volume", id: "volume" },
+    { type: "Custom", id: "custom" },
+  ]);
+  console.log("selected coin", selectedCoin);
+  const handleDuration = (item) => {
+    periodInfo.forEach((element, props) => {
       if (element.id === item.id) {
-        this.props.alert(element.id);
-        this.setState({ selectedTime: element, timeSelect: false });
+        props.alert(element.id);
+        setSelectedCoin(element);
+        setTimeSelect(false);
       }
     });
   };
-  handleType = (item) => {
-    let type = this.state.coinInfo;
-    type.forEach((element) => {
+  const handleType = (item, props) => {
+    coinInfo.forEach((element) => {
       if (element.id === item.id) {
-        this.props.handleType(element);
-        this.setState({ selectedType: element, dataType: false });
+        props.handleType(element);
+        setSelectedType(element);
+        setDataType(false);
       }
     });
   };
 
-  handleCoin = (item) => {
-    let list = this.state.coinList;
-    list.forEach((element) => {
+  const handleCoin = (item, props) => {
+    coinList.forEach((element) => {
       if (element.name === item.name) {
-        this.props.alert2(element.name);
-        this.setState({ selectedCoin: element, list: false });
+        props.alert2(element.name);
+        setSelectedCoin(element);
+        setList(false);
+        console.log("props value fo alert2", props.alert2);
       }
     });
   };
 
-  handleList = () => {
-    this.setState({
-      list: !this.state.list,
-      timeSelect: false,
-      dataType: false,
-    });
+  const handleList = () => {
+    setList(!list);
+    setTimeSelect(false);
+    setDataType(false);
   };
-  handleTimeSelect = (props) => {
-    this.setState({
-      timeSelect: !this.state.timeSelect,
-      list: false,
-      dataType: false,
-    });
+  const handleTimeSelect = (props) => {
+    setTimeSelect(!timeSelect);
+    setList(false);
+    setDataType(false);
   };
-  handleDatatype = () => {
-    this.setState({
-      dataType: !this.state.dataType,
-      timeSelect: false,
-      list: false,
-    });
+  const handleDatatype = () => {
+    setDataType(!dataType);
+    setTimeSelect(false);
+    setList(false);
   };
+  return (
+    <Wrapper>
+      <TableNavbar>
+        <CoinSelection onClick={handleList}>
+          <Info>{selectedCoin ? selectedCoin.name : "Bitcoin"}</Info>
+          <Styledarrow />
+        </CoinSelection>
+        <NestedList>
+          {list && <NestedCoinList list={coinList} handleCoin={handleCoin} />}
+        </NestedList>
+      </TableNavbar>
+      <InnerDiv>
+        <Div>
+          <CoinDisplayType onClick={handleDatatype}>
+            <Info>{selectedType ? selectedType.type : "Price"}</Info>
 
-  render() {
-    return (
-      <Wrapper>
-        <TableNavbar>
-          <CoinSelection onClick={this.handleList}>
-            <Info>
-              {this.state.selectedCoin
-                ? this.state.selectedCoin.name
-                : "Bitcoin"}
-            </Info>
             <Styledarrow />
-          </CoinSelection>
-          <NestedList>
-            {this.state.list && (
-              <NestedCoinList
-                list={this.state.coinList}
-                handleFilter={this.handleFilter}
-                value={this.state.input}
-                handleCoin={this.handleCoin}
+          </CoinDisplayType>
+          <NestedDataList>
+            {dataType && (
+              <CoinInfoType coinInfo={coinInfo} handleType={handleType} />
+            )}
+          </NestedDataList>
+        </Div>
+        <TimeDiv>
+          <NestedDiv onClick={handleTimeSelect}>
+            <Info>{selectedTime ? selectedTime.period : "1 Year"}</Info>
+
+            <Styledarrow />
+          </NestedDiv>
+          <NestedTimeList>
+            {timeSelect && (
+              <PeriodSelect
+                handleDuration={handleDuration}
+                periodInfo={periodInfo}
               />
             )}
-          </NestedList>
-        </TableNavbar>
-        <InnerDiv>
-          <Div>
-            <CoinDisplayType onClick={this.handleDatatype}>
-              <Info>
-                {this.state.selectedType
-                  ? this.state.selectedType.type
-                  : "Price"}
-              </Info>
-
-              <Styledarrow />
-            </CoinDisplayType>
-            <NestedDataList>
-              {this.state.dataType && (
-                <CoinInfoType
-                  coinInfo={this.state.coinInfo}
-                  handleType={this.handleType}
-                />
-              )}
-            </NestedDataList>
-          </Div>
-          <TimeDiv>
-            <NestedDiv onClick={this.handleTimeSelect}>
-              <Info>
-                {this.state.selectedTime
-                  ? this.state.selectedTime.period
-                  : "1 Year"}
-              </Info>
-
-              <Styledarrow />
-            </NestedDiv>
-            <NestedTimeList>
-              {this.state.timeSelect && (
-                <PeriodSelect
-                  handleDuration={this.handleDuration}
-                  periodInfo={this.state.periodInfo}
-                  handleSubmit={this.handleSubmit}
-                />
-              )}
-            </NestedTimeList>
-          </TimeDiv>
-        </InnerDiv>
-      </Wrapper>
-    );
-  }
+          </NestedTimeList>
+        </TimeDiv>
+      </InnerDiv>
+    </Wrapper>
+  );
 }
 export default DisplayChartNavbar;
