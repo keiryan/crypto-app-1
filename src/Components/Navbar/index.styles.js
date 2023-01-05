@@ -28,17 +28,11 @@ export const SearchDiv = styled.div`
   width: 75%;
   box-shadow: 0px 0px 0.5px 0.5px #fafbfb;
   justify-content: space-between;
-  /* @media only screen and (min-width: 1400px) {
-    width: 82%;
-  } */
 `;
 export const Wrapper = styled.div`
   display: flex;
   width: 20%;
   justify-content: space-between;
-  /* @media only screen and (min-width: 1400px) {
-    width: 13%;
-  } */
 `;
 export const Notification = styled(IoMdNotificationsOutline)`
   font-size: 1.8rem;

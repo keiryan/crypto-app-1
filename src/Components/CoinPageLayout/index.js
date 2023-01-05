@@ -28,6 +28,9 @@ import {
   ProgressBar,
   ProgressDiv,
   NavigationLink,
+  Wrappers,
+  AtlData,
+  AthData,
 } from "./index.styes";
 
 const ItemList = ({ item, data }) => {
@@ -41,6 +44,13 @@ const ItemList = ({ item, data }) => {
 };
 
 const CoinPageLayout = ({ data }) => {
+  const athDate = new Date(
+    data?.market_data.ath_date?.usd
+  ).toLocaleDateString();
+  const atlDate = new Date(
+    data?.market_data.atl_date?.usd
+  ).toLocaleDateString();
+
   return (
     <Container>
       <MainDiv>
@@ -53,7 +63,9 @@ const CoinPageLayout = ({ data }) => {
             <CoinName>{data?.id}</CoinName>
             <CoinOfficalLink>
               <CoinIconLink />
-              <OfficialLink>{data.links?.homepage[0]}</OfficialLink>
+              <OfficialLink target="_blank" href={data.links?.homepage[0]}>
+                {data.links?.homepage[0]}
+              </OfficialLink>
             </CoinOfficalLink>
           </Section>
           <Section>
@@ -65,6 +77,26 @@ const CoinPageLayout = ({ data }) => {
               </CoinGrowth>
               <StyleStack />
             </CoinMarketDiv>
+            <Wrappers>
+              <AthData>
+                <p>ATH:</p>
+                <p>${data?.market_data.ath.usd}</p>
+                <p>
+                  {" "}
+                  {(data?.market_data.ath_change_percentage?.usd).toFixed(2)}%
+                </p>
+                <p>{athDate}</p>
+              </AthData>
+              <AtlData>
+                <p>ATL:</p>
+                <p>${data?.market_data.atl.usd}</p>
+                <p>
+                  {" "}
+                  {(data?.market_data.atl_change_percentage?.usd).toFixed(2)}%
+                </p>
+                <p>{atlDate}</p>
+              </AtlData>
+            </Wrappers>
           </Section>
           <Section>
             <Wrapper>
@@ -102,18 +134,33 @@ const CoinPageLayout = ({ data }) => {
           <CoinLink>
             <Link>
               <CoinIconLink />{" "}
-              <NavigationLink href={data?.links?.blockchain_site[0]}>
+              <NavigationLink
+                target="_blank"
+                href={data?.links?.blockchain_site[0]}
+              >
                 {data?.links?.blockchain_site[0]}
               </NavigationLink>
             </Link>
             <Link>
-              <CoinIconLink /> {data?.links?.official_forum_url[0]}
+              <CoinIconLink />{" "}
+              <NavigationLink
+                target="_blank"
+                href={data?.links?.blockchain_site[0]}
+              >
+                {data?.links?.blockchain_site[0]}
+              </NavigationLink>
             </Link>
           </CoinLink>
         </Main>
         <Footer>
           <TokenLink>
-            <CoinIconLink /> {data?.links?.repos_url.github}
+            <CoinIconLink />
+            <NavigationLink
+              target="_blank"
+              href={data?.links?.blockchain_site[0]}
+            >
+              {data?.links?.blockchain_site[0]}
+            </NavigationLink>
           </TokenLink>
         </Footer>
       </MainDiv>

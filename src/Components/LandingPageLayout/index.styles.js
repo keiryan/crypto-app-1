@@ -30,10 +30,11 @@ export const TableRow = styled.tr`
 export const Table = styled.table`
   color: white;
   width: 100%;
-
+  /* border: solid white; */
+  padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.6);
 `;
 export const TableData = styled.td`
   padding: 12px 10px;

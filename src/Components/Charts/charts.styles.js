@@ -29,16 +29,17 @@ export const CoinInfoDiv = styled.div`
 export const ChartContainer = styled.div`
   box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.5);
   padding: 1rem;
-  border: 0.7px solid white;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.6);
 
   width: 67%;
 `;
 export const IndicatorContainer = styled.div`
-  box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.5);
   padding: 0.5rem 1rem;
   position: relative;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.6);
+
   width: 30%;
-  border: solid white;
+  /* border: solid white; */
 
   font-family: Arial, Helvetica, sans-serif;
 `;
